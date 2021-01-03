@@ -5,6 +5,13 @@ module.exports = {
 
     theme: {
         extend: {
+            colors: {
+                // TODO: Add new color palettes to event calendar tabs
+                shortTab0: {
+                    primary: '#F6F5AE',
+                    secondary: '#ED7D3A'
+                },
+            },
             fontFamily: {
                 sans: ['Nunito', ...defaultTheme.fontFamily.sans],
             },
