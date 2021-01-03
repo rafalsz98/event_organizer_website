@@ -22,9 +22,9 @@ There are 2 versions of this component:
 ![x-event-short-tab.small](readme_res/event-short-tab/small.png)
 
 ### Parameters
-- event: **mandatory** | Event model variable
-- color: **default 0** | Used to change color palette, available palettes below
-- class: **optional** | Any css classes
+- event: (**mandatory**) Event model variable
+- color: (**default 0**) Used to change color palette, available palettes below
+- class: (**optional**) Any css classes
 
 ### Available color palettes
 - 0
