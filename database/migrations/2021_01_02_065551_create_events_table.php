@@ -25,6 +25,7 @@ class CreateEventsTable extends Migration
             $table->unsignedInteger('max_participants', false);
             $table->unsignedInteger('current_participants', false);
             $table->unsignedInteger('price', false);
+            $table->integer('creator_id');
             $table->timestamps();
         });
     }

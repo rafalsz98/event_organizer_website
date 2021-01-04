@@ -6,7 +6,6 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use App\Models\Event;
 
 class User extends Authenticatable
 {
@@ -42,7 +41,18 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    // user remembers which events he has created
     public function events() {
-        return $this->belongsToMany(Event::class);
+        return $this->hasMany(Event::class);
+    }
+
+    // pivot table tickets
+    public function tickets() {
+        return $this->belongsToMany(Event::class)->as('tickets');
+    }
+
+    // pivot table tickets
+    public function observers() {
+        return $this->belongsToMany(Event::class)->as('observers')->withPivot('color');
     }
 }
