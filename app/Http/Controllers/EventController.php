@@ -4,14 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Models\Event;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
-//TODO... MIDDLEWARE auth
 
 class EventController extends Controller
 {
     public function index()
     {
         $events=Event::all();
+
         return view('events.index')->withEvents($events);
     }
 
@@ -27,8 +29,6 @@ class EventController extends Controller
 
     public function store(Request $request)
     {
-        //TODO... LATITUDE AND LONGTITUDE VALIDATION
-
         $this->ValidateEvent($request);
 
         $event = new Event();
@@ -43,9 +43,9 @@ class EventController extends Controller
         $event->max_participants = $request->max_participants;
         $event->current_participants = 0;
         $event->price = $request->price;
+        $event->creator_id=$request->user()->id;
 
         $event->save();
-
 
         return redirect()->route('events.show', $event);
 
@@ -53,6 +53,9 @@ class EventController extends Controller
 
     public function edit(Event $event)
     {
+        if(Auth::id() != $event->creator_id)
+            return redirect()->route('events.index');
+
         return view('events.edit')->withEvent($event);
     }
 
@@ -70,14 +73,16 @@ class EventController extends Controller
         $event->max_participants = $request->max_participants;
         $event->price = $request->price;
 
-
-        $event->update( );
+        $event->update();
 
         return redirect()->route('events.show',$event);
     }
 
     public function destroy(Event $event)
     {
+        if(Auth::id() != $event->creator_id)
+            return redirect()->route('events.index');
+
         $event->delete();
 
         return redirect()->route('events.index');
@@ -85,7 +90,6 @@ class EventController extends Controller
 
     private function ValidateEvent(Request $request)
     {
-        //TODO... date is wrong, timezones?
         $todayDate = date('Y-m-d H:i');
 
         return $request->validate([
