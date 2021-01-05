@@ -6,15 +6,15 @@
 
 actor: AcceptanceTester
 modules:
-    enabled:
-        - Db:
-            dsn: 'mysql:host=127.0.0.1;dbname=event_web'
-            user: 'admin'
-            password: '123'
-            populate: true
-            cleanup: true
-            dump: tests_codeception/_data/dump.sql
-        - PhpBrowser:
-            url: http://localhost/myapp
-        - \Helper\Acceptance
-step_decorators: ~        
+  enabled:
+    - PhpBrowser:
+        url: http://localhost:8888
+    - \Helper\Acceptance
+    - Db:
+        dsn: 'mysql:host=127.0.0.1;dbname=test'
+        user: 'test'
+        password: 'test123'
+        populate: true
+        cleanup: true
+        dump: tests_codeception/_data/dump.sql
+step_decorators: ~
