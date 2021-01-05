@@ -24,5 +24,8 @@ Route::get('/dashboard', function () {
 require __DIR__.'/auth.php';
 
 Route::resource('events',\App\Http\Controllers\EventController::class);
-Route::get('/events/create','\App\Http\Controllers\EventController@create')->middleware(['auth'])->name('events.create');
-Route::get('/events/edit/{event}','\App\Http\Controllers\EventController@edit')->middleware(['auth'])->name('events.edit');
+Route::get('/events/create/','\App\Http\Controllers\EventController@create')->middleware(['auth'])->name('events.create');
+Route::post('/events','\App\Http\Controllers\EventController@store')->middleware(['auth'])->name('events.store');
+Route::get('/events/{event}/edit','\App\Http\Controllers\EventController@edit')->middleware(['auth','event.owner'])->name('events.edit');
+Route::put('/events/{event}','\App\Http\Controllers\EventController@update')->middleware(['auth','event.owner'])->name('events.update');
+Route::delete('/events/{event}','\App\Http\Controllers\EventController@destroy')->middleware(['auth','event.owner'])->name('events.destroy');

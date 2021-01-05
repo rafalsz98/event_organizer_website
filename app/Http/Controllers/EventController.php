@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Event;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use App\Models\User;
 
 
 class EventController extends Controller
@@ -53,9 +51,6 @@ class EventController extends Controller
 
     public function edit(Event $event)
     {
-        if(Auth::id() != $event->creator_id)
-            return redirect()->route('events.index');
-
         return view('events.edit')->withEvent($event);
     }
 
@@ -80,9 +75,6 @@ class EventController extends Controller
 
     public function destroy(Event $event)
     {
-        if(Auth::id() != $event->creator_id)
-            return redirect()->route('events.index');
-
         $event->delete();
 
         return redirect()->route('events.index');
@@ -90,7 +82,7 @@ class EventController extends Controller
 
     private function ValidateEvent(Request $request)
     {
-        $todayDate = date('Y-m-d H:i');
+        $todayDate = date('Y-m-d H:i',time() + 60*60);
 
         return $request->validate([
             'datestart' => 'required|date_format:Y-m-d H:i|after_or_equal:'.$todayDate,
