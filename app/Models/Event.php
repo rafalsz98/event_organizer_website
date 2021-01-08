@@ -9,6 +9,10 @@ class Event extends Model
 {
     use HasFactory;
 
+
+    protected $fillable=['datestart'];
+
+
     // event remembers which user created it
     public function user() {
         return $this->belongsTo(User::class, 'creator_id');
