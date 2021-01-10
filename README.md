@@ -43,3 +43,25 @@ Gives tabs captured on above screens
 <x-event-short-tab.big :event="$event" class="w-40 my-5"></x-event-short-tab.big>
 <x-event-short-tab.small :event="$event" class="w-40 my-5"></x-event-short-tab.small>
 ```
+
+## navbar 
+<x-navbar.bar ..."/>
+
+Part of bar components is: <x-navbar.link .../> 
+
+### Parameters
+- logo: (**mandatory**) Name of navbar
+- destinations: (**default events.index**) list of routes
+- names: (**default Link**) list of names of links to destinations 
+- icons: (**default view-list**) list of names of icons located in resources/views/components/icons, icons = svg images, will be on the left of name parameter
+
+Values in list are separated by ' ' - one space 
+
+Amount of links in bar depends on the smallest parameter(destinations, names, icons) eg. if names parameter has one name, then bar has one link.
+
+Value at first position(before first space) corresponds to first value in other parameters...  
+
+### Example usage
+```html
+<x-navbar.bar logo="Calendar" destinations="events.index dashboard" names="Events Dashboard" icons="view-list calendar"/>
+```
