@@ -1,3 +1,3 @@
 <x-layouts.default>
-    Dashboard
+    Events list
 </x-layouts.default>

@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('events');
 });
 
 Route::get('/dashboard', function () {
@@ -29,3 +29,5 @@ Route::post('/events','\App\Http\Controllers\EventController@store')->middleware
 Route::get('/events/{event}/edit','\App\Http\Controllers\EventController@edit')->middleware(['auth','event.owner'])->name('events.edit');
 Route::put('/events/{event}','\App\Http\Controllers\EventController@update')->middleware(['auth','event.owner'])->name('events.update');
 Route::delete('/events/{event}','\App\Http\Controllers\EventController@destroy')->middleware(['auth','event.owner'])->name('events.destroy');
+
+Route::get('debug', [\App\Http\Controllers\DebugController::class, 'index']);

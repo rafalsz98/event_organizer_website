@@ -1,3 +1,3 @@
 <x-layouts.default>
-    Dashboard
+    test
 </x-layouts.default>
