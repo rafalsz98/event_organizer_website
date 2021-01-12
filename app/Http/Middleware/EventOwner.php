@@ -17,7 +17,7 @@ class EventOwner
      */
     public function handle(Request $request, Closure $next)
     {
-        if($request->user()->id !== Event::find($request->route('event')->id)->creator_id)
+        if($request->user()->id !== Event::find($request->route('event')->id)->user_id)
         {
             abort(403, 'Access denied');
         }
