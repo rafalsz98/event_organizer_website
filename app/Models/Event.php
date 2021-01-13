@@ -15,7 +15,7 @@ class Event extends Model
 
     // event remembers which user created it
     public function user() {
-        return $this->belongsTo(User::class, 'creator_id');
+        return $this->belongsTo(User::class);
     }
 
     // one event may have many images

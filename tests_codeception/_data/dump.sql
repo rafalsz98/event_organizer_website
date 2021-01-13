@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.22, for Linux (x86_64)
 --
--- Host: localhost    Database: test
+-- Host: localhost    Database: event_web
 -- ------------------------------------------------------
 -- Server version	8.0.22
 
@@ -34,7 +34,7 @@ CREATE TABLE `events` (
   `max_participants` int unsigned NOT NULL,
   `current_participants` int unsigned NOT NULL,
   `price` int unsigned NOT NULL,
-  `creator_id` int NOT NULL,
+  `user_id` int NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -250,4 +250,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-01-04 17:13:51
+-- Dump completed on 2021-01-12 13:55:08
