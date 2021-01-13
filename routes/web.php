@@ -42,5 +42,9 @@ Route::name('debug.')->prefix('debug')->group(function() {
         return view('debug.test-shortTabSmall');
     })->name('test-shortTabSmall');
 
+    Route::get('/test-sideTab', function () {
+        return view('debug.test-sideTab');
+    })->name('test-sideTab');
+
     // ...Add more...
 });
