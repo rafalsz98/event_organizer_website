@@ -65,3 +65,23 @@ Value at first position(before first space) corresponds to first value in other 
 ```html
 <x-navbar.bar logo="Calendar" destinations="events.index dashboard" names="Events Dashboard" icons="view-list calendar"/>
 ```
+
+## event-tab
+<x-event-tab.side...
+
+![x-event--tab.side](readme_res/event-tab-side/side.png)
+
+### Parameter
+- event: (**mandatory**) Event model variable
+
+
+This element is to be found next to the calendar component and its purpose is to give user more detailed info about given event.
+
+One can find there event's name, time, duration, place and what is perhaps the most important, number of still avaiable tickets.
+
+This element also has an href which directs to the given event detailed view.
+
+### Example usage
+```html
+<x-event-tab.side :event="$event"></x-event-tab.side>
+```
