@@ -8,7 +8,7 @@ actor: AcceptanceTester
 modules:
   enabled:
     - PhpBrowser:
-        url: http://localhost:8888
+        url: http://localhost:8000 # Do not change
     - \Helper\Acceptance
     - Db:
         dsn: 'mysql:host=127.0.0.1;dbname=event_web'

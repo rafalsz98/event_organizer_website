@@ -29,4 +29,18 @@ Route::get('/events/{event}/edit','\App\Http\Controllers\EventController@edit')-
 Route::put('/events/{event}','\App\Http\Controllers\EventController@update')->middleware(['auth','event.owner'])->name('events.update');
 Route::delete('/events/{event}','\App\Http\Controllers\EventController@destroy')->middleware(['auth','event.owner'])->name('events.destroy');
 
-Route::get('debug', [\App\Http\Controllers\DebugController::class, 'index']);
+Route::name('debug.')->prefix('debug')->group(function() {
+    Route::get('/', function () {
+        return view('debug.index');
+    })->name('index');
+
+    Route::get('/test-shortTabBig', function () {
+        return view('debug.test-shortTabBig');
+    })->name('test-shortTabBig');
+
+    Route::get('/test-shortTabSmall', function () {
+        return view('debug.test-shortTabSmall');
+    })->name('test-shortTabSmall');
+
+    // ...Add more...
+});
