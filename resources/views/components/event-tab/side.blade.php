@@ -16,10 +16,10 @@
             <hr class="border-gray-300" />
 
             <p class="flex flex-row flex-wrap w-full px-4 py-1 overflow-hidden text-sm text-justify text-gray-700">
-                {{$event->datestart}}
+                {{$event->datestart->format('d-m-Y H:i')}}
             </p>
             <p class="flex flex-row flex-wrap w-full px-4 py-1 overflow-hidden text-sm text-justify text-gray-700">
-                Event duration: {{$event->duration}}
+                Event duration: {{$event->duration}} h
             </p>
             <p class="flex flex-row flex-wrap w-full px-4 py-1 overflow-hidden text-sm text-justify text-gray-700">
                 {{$event->place}}
@@ -29,7 +29,7 @@
 
             <section class="px-2 py-1 mt-1">
                 <div class="flex flex-row-reverse">
-                    <a href="/event/{{$event->id}}" class="pl-2 text-gray-700 hover:underline">
+                    <a href="/events/{{$event->id}}" class="pl-2 text-gray-700 hover:underline">
                         Details
                     </a>
                     <img src="/images/details.png" width="18" height="10">
