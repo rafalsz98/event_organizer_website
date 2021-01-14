@@ -4,7 +4,7 @@
     $icons=explode(' ',$icons);
     $destinations=explode(' ',$destinations);
     $names=explode(' ',$names);
-    $size=min(count($destinations),count($icons),count($names));
+    $size=count($destinations);
 @endphp
 
 
@@ -22,7 +22,7 @@
             <x-navbar.link :destination="(empty( $destinations[$i] ))?'events.index':$destinations[$i]"
                            :icon="(empty( $icons[$i] ))?'view-list':$icons[$i]"
                            class="flex items-center px-1 sm:px-2 md:px-3 md:px-4 lg:px-5 text-sm md:text-base lg:text-md xl:text-lg">
-                {{ __($names[$i]) }}
+                {{ __( empty($names[$i])?'suprise':$names[$i]) }}
             </x-navbar.link>
         @endfor
 

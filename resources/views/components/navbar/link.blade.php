@@ -10,7 +10,7 @@ $componentName="icons.".$icon;
 
 @endphp
 
-<a href="{{route($destination)}}" class="{{$class??'flex items-center px-1'}} {{$color}}">
+<a href="{{route($destination)}}" class="{{$class??''}} {{$color}}">
     <x-dynamic-component :component="$componentName" class="flex block h-4 sm:h-5 md:h-6   pr-1 stroke-current fill-current"/>
     {{$slot}}
 </a>

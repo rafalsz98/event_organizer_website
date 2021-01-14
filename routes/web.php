@@ -29,6 +29,7 @@ Route::get('/events/{event}/edit','\App\Http\Controllers\EventController@edit')-
 Route::put('/events/{event}','\App\Http\Controllers\EventController@update')->middleware(['auth','event.owner'])->name('events.update');
 Route::delete('/events/{event}','\App\Http\Controllers\EventController@destroy')->middleware(['auth','event.owner'])->name('events.destroy');
 
+
 Route::name('debug.')->prefix('debug')->group(function() {
     Route::get('/', function () {
         return view('debug.index');
@@ -42,5 +43,14 @@ Route::name('debug.')->prefix('debug')->group(function() {
         return view('debug.test-shortTabSmall');
     })->name('test-shortTabSmall');
 
+    Route::get('/test-navbar', function () {
+        return view('debug.test-navbar');
+    })->name('test-navbar');
+
+    Route::get('/test-gallery', function () {
+        return view('debug.test-gallery');
+    })->name('test-gallery');
+
     // ...Add more...
+
 });
