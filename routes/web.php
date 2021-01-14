@@ -22,13 +22,13 @@ require __DIR__.'/auth.php';
 Route::get('/dashboard','\App\Http\Controllers\EventController@dashboard')->middleware(['auth'])->name('dashboard');
 Route::post('/events/{event}/observe','\App\Http\Controllers\EventController@observe')->middleware(['auth'])->name('events.observe');
 Route::get('/events/{event}/unobserve','\App\Http\Controllers\EventController@unobserve')->middleware(['auth'])->name('events.unobserve');
+Route::get('/events/{event}/buy','\App\Http\Controllers\EventController@buy')->middleware(['auth'])->name('events.buy');
 Route::resource('/events',\App\Http\Controllers\EventController::class);
 Route::get('/events/create/','\App\Http\Controllers\EventController@create')->middleware(['auth'])->name('events.create');
 Route::post('/events','\App\Http\Controllers\EventController@store')->middleware(['auth'])->name('events.store');
 Route::get('/events/{event}/edit','\App\Http\Controllers\EventController@edit')->middleware(['auth','event.owner'])->name('events.edit');
 Route::put('/events/{event}','\App\Http\Controllers\EventController@update')->middleware(['auth','event.owner'])->name('events.update');
 Route::delete('/events/{event}','\App\Http\Controllers\EventController@destroy')->middleware(['auth','event.owner'])->name('events.destroy');
-
 
 Route::name('debug.')->prefix('debug')->group(function() {
     Route::get('/', function () {
@@ -43,6 +43,10 @@ Route::name('debug.')->prefix('debug')->group(function() {
         return view('debug.test-shortTabSmall');
     })->name('test-shortTabSmall');
 
+    Route::get('/test-sideTab', function () {
+        return view('debug.test-sideTab');
+    })->name('test-sideTab');
+
     Route::get('/test-navbar', function () {
         return view('debug.test-navbar');
     })->name('test-navbar');
@@ -52,5 +56,6 @@ Route::name('debug.')->prefix('debug')->group(function() {
     })->name('test-gallery');
 
     // ...Add more...
-
 });
+
+
