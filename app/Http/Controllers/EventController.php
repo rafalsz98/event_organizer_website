@@ -137,6 +137,23 @@ class EventController extends Controller
             ->withBoughtEvents($bought_events);
     }
 
+    public function buy(Event $event)
+    {
+        $user_id=Auth::id();
+        $bought = false;
+
+        $availableTickets = $event->max_participants - $event->current_participants;
+
+        if(!DB::table('tickets')->where(['event_id'=>$event->id,'user_id'=>$user_id])->exists()
+            && $availableTickets > 0)
+        {
+            DB::table('tickets')->insert(['event_id'=>$event->id,'user_id'=>$user_id]);
+            $event->current_participants += 1;
+            $bought = true;
+        }
+
+        return redirect()->back()->withBought($bought);
+    }
 
     private function ValidateEvent(Request $request)
     {
