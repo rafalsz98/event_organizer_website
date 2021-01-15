@@ -47,5 +47,15 @@ Route::name('debug.')->prefix('debug')->group(function() {
         return view('debug.test-sideTab');
     })->name('test-sideTab');
 
+    Route::get('/test-navbar', function () {
+        return view('debug.test-navbar');
+    })->name('test-navbar');
+
+    Route::get('/test-gallery', function () {
+        return view('debug.test-gallery');
+    })->name('test-gallery');
+
     // ...Add more...
 });
+
+
