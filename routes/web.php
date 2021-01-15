@@ -29,6 +29,7 @@ Route::post('/events','\App\Http\Controllers\EventController@store')->middleware
 Route::get('/events/{event}/edit','\App\Http\Controllers\EventController@edit')->middleware(['auth','event.owner'])->name('events.edit');
 Route::put('/events/{event}','\App\Http\Controllers\EventController@update')->middleware(['auth','event.owner'])->name('events.update');
 Route::delete('/events/{event}','\App\Http\Controllers\EventController@destroy')->middleware(['auth','event.owner'])->name('events.destroy');
+Route::get('/events/{event}/ticket','\App\Http\Controllers\EventController@ticket')->middleware(['auth'])->name('events.ticket');
 
 Route::name('debug.')->prefix('debug')->group(function() {
     Route::get('/', function () {
@@ -46,6 +47,18 @@ Route::name('debug.')->prefix('debug')->group(function() {
     Route::get('/test-sideTab', function () {
         return view('debug.test-sideTab');
     })->name('test-sideTab');
+
+        Route::get('/ticket', function () {
+        $pdf= PDF::loadView('ticket/ticketPDF', array(
+            'name' => 'Top Gear Live',
+            'datestart' => '12-11-1879 13:30',
+            'duration' => '2h',
+            'place' => 'AGH UST Cracow',
+            'price' => '1600$',
+            'email' => 'foo@bar'
+        ));
+        return $pdf->setPaper('a5', 'landscape')->download('ticket.pdf');
+    })->name('ticket');
 
     // ...Add more...
 });
