@@ -155,6 +155,28 @@ class EventController extends Controller
         return redirect()->back()->withBought($bought);
     }
 
+        public function ticket(Event $event)
+    {
+        $user_id=Auth::id();
+        $email=Auth::user()->email;
+
+        if(DB::table('tickets')->where(['event_id'=>$event->id,'user_id'=>$user_id])->exists())
+        {
+            $pdf= PDF::loadView('ticket/ticketPDF', array(
+                'name' => $event->name,
+                'datestart' => $event->datestart,
+                'duration' => $event->duration,
+                'place' => $event->place,
+                'price' => $event->price,
+                'email' => $email
+            ));
+            return $pdf->download('ticket.pdf');
+        }
+
+        $ticket=false;
+        return redirect()->back()->withTicket($ticket);
+    }
+
     private function ValidateEvent(Request $request)
     {
         $todayDate = date('Y-m-d H:i',time() + 60*60);

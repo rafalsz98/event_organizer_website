@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ticket</title>
+    <style>
+        body {
+            background-color: #f2f2f2;
+        }
+        h2 {
+            padding: 10px 10px 10px 10px;
+        }
+    </style>
+</head>
+<body>
+    <h2>{{$name}}</h2>
+    <br>
+    <table style="width: 600px">
+        <tr>
+            <th>
+                <div class="px-10">
+                    <img src="https://picsum.photos/200/300?random=1" width="256" height="256">
+                </div>
+            </th>
+            <th>
+                <p>{{$datestart}}</p>
+                <p>{{$duration}}</p>
+                <p>{{$place}}</p>
+                <p>{{$price}}</p><br>
+                <p style="text-decoration: underline">Your email:  {{$email}}</p>
+            </th>
+        </tr>
+    </table>
+</body>
+</html>

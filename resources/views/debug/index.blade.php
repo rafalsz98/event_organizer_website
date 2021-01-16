@@ -5,5 +5,6 @@
         <li><a href="{{route('debug.test-sideTab')}}">sideTab</a></li>
         <li><a href="{{route('debug.test-navbar')}}">navbar</a></li>
         <li><a href="{{route('debug.test-gallery')}}">gallery</a></li>
+        <li><a href="{{route('debug.ticket')}}">ticket example</a></li>
     </ul>
 </x-layouts.default>
