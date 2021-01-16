@@ -105,22 +105,21 @@ This element also has an href which directs to the given event detailed view.
 <x-event-tab.side :event="$event"></x-event-tab.side>
 ```
 
-## event-tab
-<x-event-tab.side...
+## google-map
+<x-google.map...
 
-![x-event--tab.side](readme_res/event-tab-side/side.png)
+![x-google.map](readme_res/google-map/map.png)
 
 ### Parameter
-- event: (**mandatory**) Event model variable
+- lat: (**optional**) latitude
+- lon: (**optional**) longitude
 
 
-This element is to be found next to the calendar component and its purpose is to give user more detailed info about given event.
+This element queries the google-api system for geographical data
 
-One can find there event's name, time, duration, place and what is perhaps the most important, number of still avaiable tickets.
-
-This element also has an href which directs to the given event detailed view.
+It uses generated especially for this project API-key
 
 ### Example usage
 ```html
-<x-event-tab.side :event="$event"></x-event-tab.side>
+<x-google.map :lat="50.05" lon="30"/>
 ```
