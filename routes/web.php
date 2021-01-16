@@ -48,8 +48,16 @@ Route::name('debug.')->prefix('debug')->group(function() {
         return view('debug.test-sideTab');
     })->name('test-sideTab');
 
-        Route::get('/ticket', function () {
-        $pdf= PDF::loadView('ticket/ticketPDF', array(
+    Route::get('/test-navbar', function () {
+        return view('debug.test-navbar');
+    })->name('test-navbar');
+
+    Route::get('/test-gallery', function () {
+        return view('debug.test-gallery');
+    })->name('test-gallery');
+
+    Route::get('/ticket', function () {
+    $pdf= PDF::loadView('ticket/ticketPDF', array(
             'name' => 'Top Gear Live',
             'datestart' => '12-11-1879 13:30',
             'duration' => '2h',

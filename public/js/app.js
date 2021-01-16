@@ -21338,8 +21338,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/rafal/gwizdz/php_2020_witryna_do_organizacji_wydarzen/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/rafal/gwizdz/php_2020_witryna_do_organizacji_wydarzen/resources/css/app.css */"./resources/css/app.css");
+__webpack_require__(/*! /home/student/php/php_2020_witryna_do_organizacji_wydarzen/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/student/php/php_2020_witryna_do_organizacji_wydarzen/resources/css/app.css */"./resources/css/app.css");
 
 
 /***/ })

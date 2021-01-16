@@ -18,7 +18,11 @@
 </head>
 <body class="font-sans antialiased">
 <div class="min-h-screen bg-gray-100">
-    <x-navbar.bar logo="Calendar" destinations="events.index dashboard" names="Events Dashboard" icons="view-list calendar"/>
+
+    <x-navbar.bar destinations="events.index dashboard" names="Events Dashboard" icons="dashboard calendar">
+        {{ __('Calendar') }}
+    </x-navbar.bar>
+
     <main>
         <div class="m-5">
             {{ $slot }}

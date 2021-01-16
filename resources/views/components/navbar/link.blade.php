@@ -1,4 +1,4 @@
-@props(['icon','destination'])
+@props(['icon','destination','class'])
 
 @php
 $active=(request()->routeIs($destination));
@@ -10,8 +10,8 @@ $componentName="icons.".$icon;
 
 @endphp
 
-<a href="{{route($destination)}}" class="inline-flex items-center px-1 pt-1   text-base font-medium leading-5 {{$color}}">
-    <x-dynamic-component :component="$componentName" class="block h-10  w-auto"/>
+<a href="{{route($destination)}}" class="{{$class??''}} {{$color}}">
+    <x-dynamic-component :component="$componentName" class="flex block h-4 sm:h-5 md:h-6   pr-1 stroke-current fill-current"/>
     {{$slot}}
 </a>
 
