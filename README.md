@@ -115,9 +115,11 @@ This element also has an href which directs to the given event detailed view.
 - lon: (**optional**) longitude
 
 
-This element queries the google-api system for geographical data
+This element queries the google-api system for geographical data.
 
-It uses generated especially for this project API-key
+It uses generated especially for this project API-key.
+
+To make it work just populate GOOGLE_API_KEY field in your .env file with your one.
 
 ### Example usage
 ```html

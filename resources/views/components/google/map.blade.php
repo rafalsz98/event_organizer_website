@@ -22,4 +22,5 @@
     }
 </script>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCKDmXxDXutt78BpY6v28YhklfklX9o9sw&callback=myMap"></script>
+<?php $api_key = config('GOOGLE_API_KEY') ?>
+<script src="https://maps.googleapis.com/maps/api/js?key={{$api_key}}&callback=myMap"></script>
