@@ -68,5 +68,9 @@ Route::name('debug.')->prefix('debug')->group(function() {
         return $pdf->setPaper('a5', 'landscape')->download('ticket.pdf');
     })->name('ticket');
 
+    Route::get('/map', function () {
+        return view('debug.test-map');
+    })->name('test-map');
+
     // ...Add more...
 });
