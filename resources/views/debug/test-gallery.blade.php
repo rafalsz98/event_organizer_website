@@ -40,7 +40,10 @@
 
     @endphp
 
-    <x-gallery.gal :event="$event" class="w-444 my-5" />
+    <div class="py-10 px-10">
+        <x-gallery :event="$event"/>
+
+    </div>
 
 
 </x-layouts.default>
