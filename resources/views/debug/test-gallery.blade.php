@@ -33,17 +33,15 @@
 
                 $image=new \App\Models\Image();
                 $image->event_id=$event->id;
-                $image->image=base64_encode(file_get_contents(resource_path("views/debug/4.jpeg")));
+                $image->image=base64_encode(file_get_contents(resource_path("views/debug/6.jpeg")));
 
                 $image->save();
             }
 
     @endphp
 
-    <div class="py-10 px-10">
-        <x-gallery :event="$event"/>
+    <x-gallery :event="$event"/>
 
-    </div>
 
 
 </x-layouts.default>
