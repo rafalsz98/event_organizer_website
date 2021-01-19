@@ -12,7 +12,7 @@
 
     {{--LOGO--}}
     <div class="flex items-center pl-1 sm:pl-5">
-        <a class="text-lg md:text-xl lg:text-2xl xl:text-3xl text-blue-500">{{$slot}}</a>
+        <a class="text-lg md:text-xl lg:text-2xl xl:text-3xl text-blue-500" href="{{route('index')}}">{{$slot}}</a>
     </div>
 
     {{--LINKS--}}
