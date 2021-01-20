@@ -8,7 +8,7 @@
 @endphp
 
 
-<nav class="bg-white flex justify-between h-10 md:h-12 lg:h-14 xl:h-16 ">
+<nav class="bg-white flex justify-between h-10 md:h-12 lg:h-14 xl:h-16 shadow">
 
     {{--LOGO--}}
     <div class="flex items-center pl-1 sm:pl-5">

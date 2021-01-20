@@ -1,8 +1,11 @@
 @props(['event'])
+@php
+    $event->datestart = new DateTime($event->datestart)
+@endphp
 
-<section class="flex flex-row flex-wrap mx-auto font-mono">
-    <div class="transition-all duration-150 flex px-4 py-3 w-full md:w-md-1/3 lg:w-1/4">
-        <div class="bg-gray-50 w-full items-stretch min-h-full pb-2 mb-1 transition-all duration-150 bg-white rounded-lg shadow-lg hover:shadow-2xl">
+<section class="flex flex-row flex-wrap font-mono">
+    <div class="transition-all duration-150 flex w-full">
+        <div class="bg-gray-50 w-full items-stretch min-h-full pb-2 mb-1 transition-all duration-150 bg-white rounded-lg shadow">
             <div class="items-center flex-1 px-4  text-center mx-auto">
                 <p class="self-end text-l font-bold tracking-normal text-gray-800">{{$event->name}}</p>
                 <div class="grid grid-cols-2 gap-1 py-1">
