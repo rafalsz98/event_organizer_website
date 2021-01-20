@@ -7,5 +7,5 @@
         $event->name = "SAMURAI";
         $event->description = "description";
     @endphp
-    <x-event-short-tab.big :event="$event" class="w-40 my-5" />
+    <x-event-tab.calendar-tile-big :event="$event" class="w-40 my-5" />
 </x-layouts.default>

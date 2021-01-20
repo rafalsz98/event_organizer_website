@@ -4,8 +4,10 @@
         $event->id = 1;
         $event->datestart = new DateTime('15.01.2021 15:30');
         $event->duration = 2;
-        $event->name = "SAMURAI";
-        $event->description = "description";
+        $event->name = "Power Rangers";
+        $event->current_participants=27;
+        $event->max_participants=199;
+        $event->place='Stadion Narodowy, Warszawa';
     @endphp
-    <x-event-short-tab.small :event="$event" class="w-40 my-5" />
+    <x-event-tab.event-tile :event="$event"/>
 </x-layouts.default>
