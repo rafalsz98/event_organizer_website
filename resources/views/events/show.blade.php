@@ -1,38 +1,54 @@
 <x-layouts.default>
 
-    <div class="grid grid-cols-5 gap-20">
-        <div class="text-6xl col-start-2">
+    <div class="grid lg:grid-cols-5">
+        <div class="text-6xl  col-start-2 lg:col-start-1 xl:col-start-2">
             {{$event->name}}
         </div>
     </div>
 
-    <div class="grid grid-cols-5 gap-20">
+    <div class="grid grid-cols-1 gap-y-5 md:gap-y-10 lg:grid-cols-5 lg:gap-x-10 lg:gap-y-15 ">
 
-        <div class="text-6xl col-start-2 col-span-3 ">
+        <div class="lg:col-span-4 xl:col-start-2 xl:col-span-3 shadow-md">
             <x-gallery :event="$event"/>
         </div>
 
-        <div class="bg-white px-4 py-4 text-gray-400 stroke-current fill-current">
+        <div class="text-sm md:text-md xl:text-lg bg-white px-4 py-4 text-gray-400 stroke-current fill-current sticky top-0 self-start shadow-md">
             <div class="flex ">
-                <x-icons.calendar class="flex block h-5 pr-2"/>{{$event->datestart  }}
+                <x-icons.calendar class="flex block h-5 pr-2"/>{{ date('Y-m-d H:i',strtotime($event->datestart))  }}
             </div>
             <div class="flex">
                 <x-icons.pin class="flex block h-5 pr-2"/>{{$event->place  }}
             </div>
 
-{{--            sprawdza wlasciciela : tak : pokaz edytuj/usun,jesli nie pokaz obserwuj/nieobserwuj--}}
-            @if(\Illuminate\Support\Facades\Auth::id() !== $event->user_id)
+            @if(Auth::id() !== $event->user_id)
 
-                <form action="{{route('events.observe',$event)}}" method="POST">
-                    @csrf
-                    <button>Observe</button></a>
-                </form>
+                @if( DB::table('observers')->where(
+                                                                        ['event_id'=>$event->id,
+                                                                        'user_id'=>Auth::id()])->exists())
 
-                <a href="{{route('events.unobserve',$event)}}">Unobserve Event</a>
-                <br>
+                    <a href="{{route('events.unobserve',$event)}}">Unobserve Event</a>
+                    <br>
 
-                <a href="{{route('events.buy',$event)}}">Buy ticket</a>
-                <br>
+                @else
+
+                    <form action="{{route('events.observe',$event)}}" method="POST">
+                        @csrf
+                        <button>Observe</button>
+                    </form>
+
+                @endif
+
+                    @if( DB::table('tickets')->where(['event_id'=>$event->id,
+                                                                        'user_id'=>Auth::id()])->exists())
+
+                        <a href="{{route('events.ticket',$event)}}">Download Ticket</a>
+
+                    @else
+
+                        <a href="{{route('events.buy',$event)}}">Buy ticket</a>
+
+                    @endif
+
             @else
 
                 <a href="{{route('events.edit',$event)}}">Edit Event</a>
@@ -46,7 +62,7 @@
             @endif
         </div>
 
-        <div class="bg-white col-start-2 col-span-4 text-lg ">
+        <div class="bg-white text-md lg:text-lg lg:col-span-4 xl:col-start-2 xl:col-span-3 shadow-md ">
             <x-google.map />
 
             <div class="my-4 mx-4 ">
