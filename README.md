@@ -125,3 +125,17 @@ To make it work just populate GOOGLE_API_KEY field in your .env file with your o
 ```html
 <x-google.map :lat="50.05" lon="30"/>
 ```
+
+## gallery
+<x-gallery...
+
+### Parameter
+- event: (**mandatory**) Event model variable
+
+For given argument grabs from datebase images related to this argument.
+Gallery works like carousel, on click shows next photo.
+
+### Example usage
+```html
+<x-gallery :event="$event"/>
+```

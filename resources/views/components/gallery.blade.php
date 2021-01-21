@@ -1,4 +1,4 @@
-@props(['event', 'class'])
+@props(['event'])
 
 @php
 
@@ -28,7 +28,7 @@ $count=count($photos);
 </style>
 
 @if($count==0)
-<x-icons.calendar class="w-full"/>
+<x-icons.calendar class="w-1/2"/>
 @elseif($count==1)
     <img src="data:image/jpeg;base64, {{$photos[0]->image}}" class="w-full"/>
 @else

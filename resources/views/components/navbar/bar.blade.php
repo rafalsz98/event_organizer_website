@@ -39,8 +39,8 @@
                 </form>
             </div>
         @else
-            <a href="{{ route('login') }}" class=" pr-1 sm:pr-5">Login</a>
-            <a href="{{ route('register') }}" class=" pr-1 sm:pr-5">Register</a>
+            <a href="{{ route('login') }}" class=" pr-1 sm:pr-5">LOGIN</a>
+            <a href="{{ route('register') }}" class=" pr-1 sm:pr-5">REGISTER</a>
 
         @endif
 
