@@ -26,7 +26,7 @@
                                                                         ['event_id'=>$event->id,
                                                                         'user_id'=>Auth::id()])->exists())
 
-                    <a href="{{route('events.unobserve',$event)}}">Unobserve Event</a>
+                    <a href="{{route('events.unobserve',$event)}}">Unobserve</a>
                     <br>
 
                 @else
@@ -41,17 +41,17 @@
                     @if( DB::table('tickets')->where(['event_id'=>$event->id,
                                                                         'user_id'=>Auth::id()])->exists())
 
-                        <a href="{{route('events.ticket',$event)}}">Download Ticket</a>
+                        <a href="{{route('events.ticket',$event)}}">Download ticket</a>
 
                     @else
 
-                        <a href="{{route('events.buy',$event)}}">Buy ticket</a>
+                        <a href="{{route('events.buy',$event)}}">Buy ticket for only {{$event->price}}</a>
 
                     @endif
 
             @else
 
-                <a href="{{route('events.edit',$event)}}">Edit Event</a>
+                <a href="{{route('events.edit',$event)}}">Edit</a>
 
                 <form action="{{ route('events.destroy', $event) }}" method="POST">
                     @method('DELETE')
@@ -63,7 +63,7 @@
         </div>
 
         <div class="bg-white text-md lg:text-lg lg:col-span-4 xl:col-start-2 xl:col-span-3 shadow-md ">
-            <x-google.map />
+            <x-google.map :lat="$event->latitude" :lon="$event->longitude "/>
 
             <div class="my-4 mx-4 ">
                 {{$event->description}}
