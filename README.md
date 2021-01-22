@@ -111,6 +111,10 @@ This element also has an href which directs to the given event detailed view.
 ![x-google.map](readme_res/google-map/map.png)
 
 ### Parameter
+- function: (**mandatory**) choose map functionality
+		1	-	map just marks one place and displays it
+		2	-	map lets us create new marker and stores it in database
+		3	-	map lets us edit marker placed before
 - lat: (**optional**) latitude
 - lon: (**optional**) longitude
 
@@ -123,7 +127,7 @@ To make it work just populate GOOGLE_API_KEY field in your .env file with your o
 
 ### Example usage
 ```html
-<x-google.map :lat="50.05" lon="30"/>
+<x-google.map :function="1" :lat="50.05" lon="30"/>
 ```
 
 ## gallery

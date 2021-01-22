@@ -11,6 +11,8 @@ class Event extends Model
 
 
     protected $fillable=['datestart'];
+    protected $dates=['datestart', 'duration'];
+    protected $casts=['latitude' => 'double', 'longitude' => 'double'];
 
 
     // event remembers which user created it
