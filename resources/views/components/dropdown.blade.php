@@ -23,7 +23,7 @@ switch ($width) {
 @endphp
 
 <div class="relative" x-data="{ open: false }" @click.away="open = false" @close.stop="open = false">
-    <div class=" justify-between h-10 md:h-12 lg:h-14 xl:h-16  flex items-center pr-1 sm:pr-5" @click="open = ! open">
+    <div class=" justify-between h-10 md:h-12 lg:h-14 xl:h-16 flex items-center pr-1 sm:pr-5 cursor-pointer text-blue-500" @click="open = ! open">
             {{Auth::user()->name}}
     </div>
 
@@ -41,7 +41,8 @@ switch ($width) {
         <div class="bg-white rounded-md ring-1 ring-black ring-opacity-5 {{ $contentClasses }}">
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
-                <a style="margin-left:4px;" href="{{route('logout')}}" onclick="event.preventDefault();this.closest('form').submit();">Logout</a>
+                <x-dropdown-link onclick="event.preventDefault();this.closest('form').submit();">Logout</x-dropdown-link>
+{{--                <a style="margin-left:4px;" href="{{route('logout')}}" onclick="event.preventDefault();this.closest('form').submit();">Logout</a>--}}
             </form>
         </div>
     </div>

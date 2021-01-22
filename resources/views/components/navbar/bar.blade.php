@@ -31,17 +31,16 @@
     <div class="flex items-center pl-1 sm:pl-5">
 
         @if(Auth::check())
-            <div class="text-lg md:text-xl lg:text-2xl xl:text-3xl text-blue-500">{{ Auth::user()->name }}</div>
             <div class="flex items-center pr-1 sm:pr-5">
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-                    <a href="route('logout')" onclick="event.preventDefault();this.closest('form').submit();">Logout</a>
-                </form>
+                <x-dropdown />
+{{--                <form method="POST" action="{{ route('logout') }}">--}}
+{{--                    @csrf--}}
+{{--                    <a href="route('logout')" onclick="event.preventDefault();this.closest('form').submit();">Logout</a>--}}
+{{--                </form>--}}
             </div>
         @else
-            <a href="{{ route('login') }}" class=" pr-1 sm:pr-5">LOGIN</a>
-            <a href="{{ route('register') }}" class=" pr-1 sm:pr-5">REGISTER</a>
-
+            <a href="{{ route('login') }}" class="pr-1 sm:pr-5 text-gray-400">LOGIN</a>
+            <a href="{{ route('register') }}" class=" pr-1 sm:pr-5 text-gray-400">REGISTER</a>
         @endif
 
     </div>
