@@ -1,5 +1,6 @@
 <x-layouts.default>
     <ul>
+        <li><a href="{{route('debug.test-eventTab-calendar')}}">calendar</a></li>
         <li><a href="{{route('debug.test-eventTab-calendarTileBig')}}">calendar tile big</a></li>
         <li><a href="{{route('debug.test-eventTab-calendarTileSmall')}}">calendar tile small</a></li>
         <li><a href="{{route('debug.test-eventTab-eventTile')}}">event tile</a></li>

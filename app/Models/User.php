@@ -53,6 +53,6 @@ class User extends Authenticatable
 
     // pivot table tickets
     public function observers() {
-        return $this->belongsToMany(Event::class)->as('observers')->withPivot('color');
+        return $this->belongsToMany(Event::class)->as('observers');
     }
 }
