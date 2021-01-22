@@ -1,16 +1,14 @@
 <x-layouts.default>
-    <header class="bg-white shadow">
-        <div class="max-w-7xl mx-20 py-6 px-4 sm:px-6 lg:px-8">
-            <p class="font-bold text-2xl subpixel-antialiased">Create an event</p>
-        </div>
-    </header>
+    <div class="bg-white shadow py-6 px-4 mx-8 rounded-lg">
+        <p class="font-bold text-2xl subpixel-antialiased">Create an event</p>
+    </div>
     <x-auth-validation-errors class="mb-4 mx-auto sm:px-6 lg:px-8 pt-4" :errors="$errors" />
     <form method="post" enctype="multipart/form-data" action="{{ route('events.store') }}">
         @csrf
         <div class="grid md:grid-cols-2">
             <div class="py-8">
                 <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                    <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                    <div class="bg-white overflow-hidden shadow sm:rounded-lg">
                         <div class="p-6 bg-white border-b border-gray-200">
                                 <div>
                                     <x-label for="name" :value="__('Name')" />
@@ -44,7 +42,7 @@
 
                                 <div class="mt-4">
                                     <x-label for="description" :value="__('Description')" />
-                                    <textarea class="block mt-1 w-full resize-none border rounded-md" rows="10" name="description">{{Request::old('description')}}</textarea>
+                                    <textarea class="block mt-1 w-full resize-none border rounded-md border-b border-gray-300" rows="10" name="description">{{Request::old('description')}}</textarea>
                                 </div>
                         </div>
                     </div>
@@ -52,7 +50,7 @@
             </div>
             <div class="py-8">
                 <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                    <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                    <div class="bg-white overflow-hidden shadow sm:rounded-lg">
                         <div class="p-6 bg-white border-b border-gray-200">
                             <div>
                                 <x-label for="place" :value="__('Placename')" />
@@ -69,7 +67,7 @@
                     <x-google.map-create></x-google.map-create>
                 </div>
                 <br>
-                <input class="py-4 mx-auto sm:px-6 lg:px-8" required type="file" name="images[]" placeholder="address" multiple>
+                <input class="py-4 mx-auto sm:px-6 lg:px-8" required type="file" name="images[]" placeholder="address" accept="image/*" multiple>
                 <br>
                 <div class="flex items-center justify-end mt-4  mx-auto sm:px-6 lg:px-8">
                     <x-button class="ml-4">
