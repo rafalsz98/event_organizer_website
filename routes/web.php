@@ -35,6 +35,10 @@ Route::name('debug.')->prefix('debug')->group(function() {
         return view('debug.index');
     })->name('index');
 
+    Route::get('/test-eventTab-calendar', function () {
+        return view('debug.test-eventTab-calendar');
+    })->name('test-eventTab-calendar');
+
     Route::get('/test-eventTab-calendarTileBig', function () {
         return view('debug.test-eventTab-calendarTileBig');
     })->name('test-eventTab-calendarTileBig');
