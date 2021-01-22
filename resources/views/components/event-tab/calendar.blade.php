@@ -1,7 +1,6 @@
 
 @props(['events'])
-<!-- component -->
-<!-- This is an example component -->
+
 <div>
     <style>
         [x-cloak] {
@@ -9,16 +8,10 @@
         }
     </style>
 
-    <div class="antialiased sans-serif bg-gray-100 h-screen">
+    <div class="antialiased sans-serif">
         <div x-data="app()" x-init="[initDate(), getNoOfDays()]" x-cloak>
-            <div class="container mx-auto px-4 py-2 md:py-24">
-
-                <!-- <div class="font-bold text-gray-800 text-xl mb-4">
-                    Schedule Tasks
-                </div> -->
-
+            <div class="container px-4">
                 <div class="bg-white rounded-lg shadow overflow-hidden">
-
                     <div class="flex items-center justify-between py-2 px-6">
                         <div>
                             <span x-text="MONTH_NAMES[month]" class="text-lg font-bold text-gray-800"></span>
@@ -75,7 +68,7 @@
                                         :class="{'bg-blue-500 text-white': isToday(date) == true, 'text-gray-700': isToday(date) == false }">
                                      </div>
                                     <div style="height: 80px;" class="overflow-y-auto mt-1">
-                                        <template x-for="event in EVENTS.filter(e => new Date(e['datestart']).toDateString() ===  new Date(year, month, date).toDateString() )">
+                                        <template x-for="event in events.filter(e => new Date(e['datestart']).toDateString() ===  new Date(year, month, date).toDateString() )">
                                             <div
                                                 class="px-2 py-1 rounded-lg mt-1 overflow-hidden border"
                                                 :class="{
@@ -99,10 +92,7 @@
         <script>
             const MONTH_NAMES = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
             const DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-            let EVENTS = @json($events);
-            console.log(EVENTS[0]);
-            console.log(new Date(EVENTS[0]["datestart"]).toDateString());
-            console.log(new Date(2021, 0, 1).toDateString());
+            console.log(@json($events));
             function app() {
                 return {
                     month: '',
@@ -110,7 +100,7 @@
                     no_of_days: [],
                     blankdays: [],
                     days: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-                    EVENTS,
+                    events: @json($events),
 
                     themes: [
                         {
