@@ -19,7 +19,7 @@ require __DIR__.'/auth.php';
 
 
 Route::get('/dashboard','\App\Http\Controllers\EventController@dashboard')->middleware(['auth'])->name('dashboard');
-Route::resource('/events',\App\Http\Controllers\EventController::class)->only(['index', 'show']);
+Route::resource('/events',\App\Http\Controllers\EventController::class)->only(['index', 'show', 'create']);
 Route::post('/events/{event}/observe','\App\Http\Controllers\EventController@observe')->middleware(['auth'])->name('events.observe');
 Route::get('/events/{event}/unobserve','\App\Http\Controllers\EventController@unobserve')->middleware(['auth'])->name('events.unobserve');
 Route::get('/events/{event}/buy','\App\Http\Controllers\EventController@buy')->middleware(['auth'])->name('events.buy');
