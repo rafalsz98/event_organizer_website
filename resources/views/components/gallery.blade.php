@@ -28,7 +28,7 @@ $count=count($photos);
 </style>
 
 @if($count==0)
-<x-icons.calendar class="w-1/2"/>
+    <img src="/images/pale-list-is-empty.png" class="w-full"/>
 @elseif($count==1)
     <img src="data:image/jpeg;base64, {{$photos[0]->image}}" class="w-full"/>
 @else
