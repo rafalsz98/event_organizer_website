@@ -9,6 +9,8 @@ class Image extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['image', 'event_id'];
+
     // to which event this event belongs
     public function event() {
         return $this->belongsTo(Event::class);

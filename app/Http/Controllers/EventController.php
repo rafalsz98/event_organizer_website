@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use App\Models\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -32,7 +33,7 @@ class EventController extends Controller
 
         $event = new Event();
 
-        $event->datestart = $request->datestart.':00';
+        $event->datestart = $request->datestart_date.' '.$request->datestart_time;
         $event->duration = $request->duration;
         $event->name = $request->name;
         $event->description = $request->description;
@@ -45,6 +46,15 @@ class EventController extends Controller
         $event->user_id=$request->user()->id;
 
         $event->save();
+
+        $files = $request->file('images');
+        foreach ($files as $file)
+        {
+            $image = new Image();
+            $image->image = base64_encode(file_get_contents($file));
+            $image->event_id = $event->id;
+            $image->save();
+        }
 
         return redirect()->route('events.show', $event);
 
@@ -155,7 +165,7 @@ class EventController extends Controller
         return redirect()->back()->withBought($bought);
     }
 
-        public function ticket(Event $event)
+    public function ticket(Event $event)
     {
         $user_id=Auth::id();
         $email=Auth::user()->email;
@@ -182,7 +192,8 @@ class EventController extends Controller
         $todayDate = date('Y-m-d H:i',time() + 60*60);
 
         return $request->validate([
-            'datestart' => 'required|date_format:Y-m-d H:i|after_or_equal:'.$todayDate,
+            'datestart_date' => 'required|date_format:Y-m-d|after_or_equal:'.$todayDate,
+            'datestart_time' =>  'required|date_format:H:i',
             'duration' => 'required|regex:/^[0-9][0-9]:[0-5][0-9]$/',
             'name' => 'required|max:64',
             'description' => 'required',
