@@ -69,7 +69,7 @@ class EventController extends Controller
     {
         $this->ValidateEvent($request);
 
-        $event->datestart = $request->datestart.':00';
+        $event->datestart = $request->datestart_date.' '.$request->datestart_time;
         $event->duration = $request->duration;
         $event->name = $request->name;
         $event->description = $request->description;

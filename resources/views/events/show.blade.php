@@ -67,7 +67,7 @@
         </div>
 
         <div class="bg-white text-md lg:text-lg lg:col-span-4 xl:col-start-2 xl:col-span-3 shadow-md rounded-lg">
-            <x-google.map :lat="$event->latitude" :lon="$event->longitude "/>
+            <x-google.map :function="1" :lat="$event->latitude" :lon="$event->longitude "/>
 
             <div class="my-4 mx-4 ">
                 {{$event->description}}

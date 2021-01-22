@@ -64,11 +64,12 @@
                 <input type="hidden" name="latitude" id="latitude" />
                 <input type="hidden" name="longitude" id="longitude" />
                 <div class="mx-auto sm:px-6 lg:px-8">
-                    <x-google.map-create></x-google.map-create>
+                    <x-google.map :function="2"/>
                 </div>
-                <br>
-                <input class="py-4 mx-auto sm:px-6 lg:px-8" required type="file" name="images[]" placeholder="address" accept="image/*" multiple>
-                <br>
+                <br>                
+                <p class="font-bold mx-auto sm:px-6 lg:px-8">Choose images for your event</p>
+                <input class="py-2 mx-auto sm:px-6 lg:px-8" required type="file" name="images[]" placeholder="address" multiple>
+                <p class="font-bold text-red-600 mx-auto sm:px-6 lg:px-8">Warning! Images cannot be updated later</p>
                 <div class="flex items-center justify-end mt-4  mx-auto sm:px-6 lg:px-8">
                     <x-button class="ml-4">
                         {{ __('Create') }}
