@@ -1,18 +1,18 @@
 <x-layouts.default>
 
     <div class="grid lg:grid-cols-5">
-        <div class="text-6xl  col-start-2 lg:col-start-1 xl:col-start-2">
+        <div class="text-6xl  col-start-2 lg:col-start-1 xl:col-start-2 pb-6">
             {{$event->name}}
         </div>
     </div>
 
     <div class="grid grid-cols-1 gap-y-5 md:gap-y-10 lg:grid-cols-5 lg:gap-x-10 lg:gap-y-15 ">
 
-        <div class="lg:col-span-4 xl:col-start-2 xl:col-span-3 shadow-md">
+        <div class="lg:col-span-4 xl:col-start-2 xl:col-span-3 shadow-md bg-white rounded-lg">
             <x-gallery :event="$event"/>
         </div>
 
-        <div class="text-sm md:text-md xl:text-lg bg-white px-4 py-4 text-gray-400 stroke-current fill-current sticky top-0 self-start shadow-md">
+        <div class="text-sm md:text-md xl:text-lg bg-white px-4 py-4 text-gray-400 stroke-current fill-current sticky top-0 self-start shadow-md rounded-lg">
             <div class="flex ">
                 <x-icons.calendar class="flex block h-5 pr-2"/>{{ date('Y-m-d H:i',strtotime($event->datestart))  }}
             </div>
@@ -22,10 +22,11 @@
 
             @if(Auth::id() !== $event->user_id)
 
-                @if( DB::table('observers')->where(
-                                                                        ['event_id'=>$event->id,
-                                                                        'user_id'=>Auth::id()])->exists())
-
+                @if( DB::table('observers')->where([
+                    'event_id'=>$event->id,
+                    'user_id'=>Auth::id()
+                    ])->exists()
+                 )
                     <a href="{{route('events.unobserve',$event)}}">Unobserve</a>
                     <br>
 
@@ -38,8 +39,11 @@
 
                 @endif
 
-                    @if( DB::table('tickets')->where(['event_id'=>$event->id,
-                                                                        'user_id'=>Auth::id()])->exists())
+                    @if( DB::table('tickets')->where([
+                        'event_id'=>$event->id,
+                        'user_id'=>Auth::id()
+                        ])->exists()
+                    )
 
                         <a href="{{route('events.ticket',$event)}}">Download ticket</a>
 
@@ -62,7 +66,7 @@
             @endif
         </div>
 
-        <div class="bg-white text-md lg:text-lg lg:col-span-4 xl:col-start-2 xl:col-span-3 shadow-md ">
+        <div class="bg-white text-md lg:text-lg lg:col-span-4 xl:col-start-2 xl:col-span-3 shadow-md rounded-lg">
             <x-google.map :lat="$event->latitude" :lon="$event->longitude "/>
 
             <div class="my-4 mx-4 ">
