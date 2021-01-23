@@ -92,6 +92,10 @@ Link
 
 ### Parameter
 - event: (**mandatory**) Event model variable
+- ticketBought: (**optional**) adds a ticket img to the tab
+	This ticket img lets us download previously bought ticket PDF to our device.
+	Values: 0 - ticket not bought
+			1 - ticket bought
 
 
 This element is to be found next to the calendar component and its purpose is to give user more detailed info about given event.
@@ -102,7 +106,7 @@ This element also has an href which directs to the given event detailed view.
 
 ### Example usage
 ```html
-<x-event-tab.side :event="$event"></x-event-tab.side>
+<x-event-tab.side :event="$event" :ticketBought="1" />
 ```
 
 ## google-map

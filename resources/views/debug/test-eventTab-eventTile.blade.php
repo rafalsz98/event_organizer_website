@@ -3,7 +3,7 @@
         $event = new \App\Models\Event();
         $event->id = 1;
         $event->datestart = '15.01.2021 15:30';
-        $event->duration = 2;
+        $event->duration = '02:30';
         $event->name = "Power Rangers";
         $event->current_participants=27;
         $event->max_participants=199;
