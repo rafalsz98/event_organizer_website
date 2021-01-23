@@ -52,5 +52,4 @@
             </section>
         </div>
     </div>
-    </div>
 </section>

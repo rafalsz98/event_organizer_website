@@ -8,9 +8,9 @@
         }
     </style>
 
-    <div class="antialiased sans-serif">
+    <div class="antialiased sans-serif invisible md:visible">
         <div x-data="app()" x-init="[initDate(), getNoOfDays()]" x-cloak>
-            <div class="container px-4">
+            <div class="container pl-4">
                 <div class="bg-white rounded-lg shadow overflow-hidden">
                     <div class="flex items-center justify-between py-2 px-6">
                         <div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Event;
 use App\Models\Image;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -141,7 +142,15 @@ class EventController extends Controller
         //created events
         $created_events=Auth::user()->events()->get();
 
+
+        // hotfix until change of db
+        $allEvents = Event::all();
+        $observed_events = $observed_events->diff($bought_events)->all();
+
+
+
         return view('dashboard')
+            ->withAllEvents($allEvents)
             ->withObservedEvents($observed_events)
             ->withCreatedEvents($created_events)
             ->withBoughtEvents($bought_events);
