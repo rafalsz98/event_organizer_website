@@ -39,11 +39,19 @@ switch ($width) {
             @click="open = false">
 
         <div class="bg-white rounded-md ring-1 ring-black ring-opacity-5 {{ $contentClasses }}">
+            <form method="GET" action="{{route('events.create') }}">
+                @csrf
+                <x-dropdown-link onclick="event.preventDefault();this.closest('form').submit();">Create Event</x-dropdown-link>
+            </form>
+        </div>
+
+        <div class="bg-white rounded-md ring-1 ring-black ring-opacity-5 {{ $contentClasses }}">
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
                 <x-dropdown-link onclick="event.preventDefault();this.closest('form').submit();">Logout</x-dropdown-link>
 {{--                <a style="margin-left:4px;" href="{{route('logout')}}" onclick="event.preventDefault();this.closest('form').submit();">Logout</a>--}}
             </form>
         </div>
+
     </div>
 </div>
