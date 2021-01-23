@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 class CreateImagesTable extends Migration
 {
@@ -19,6 +20,8 @@ class CreateImagesTable extends Migration
             $table->integer('event_id');
             $table->timestamps();
         });
+
+        DB::statement("ALTER TABLE images MODIFY COLUMN image MEDIUMBLOB");
     }
 
     /**

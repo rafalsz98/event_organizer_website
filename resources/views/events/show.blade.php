@@ -12,7 +12,7 @@
             <x-gallery :event="$event"/>
         </div>
 
-        <div class="text-sm md:text-md xl:text-lg bg-white px-4 py-4 text-gray-400 stroke-current fill-current sticky top-0 self-start shadow-md rounded-lg">
+        <div class="text-sm md:text-md xl:text-lg bg-white px-4 py-4 text-gray-400 stroke-current fill-current sticky top-10 self-start shadow-md rounded-lg">
             <div class="flex ">
                 <x-icons.calendar class="flex block h-5 pr-2"/>{{ date('Y-m-d H:i',strtotime($event->datestart))  }}
             </div>

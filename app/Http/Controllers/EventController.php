@@ -49,12 +49,14 @@ class EventController extends Controller
         $event->save();
 
         $files = $request->file('images');
-        foreach ($files as $file)
-        {
-            $image = new Image();
-            $image->image = base64_encode(file_get_contents($file));
-            $image->event_id = $event->id;
-            $image->save();
+        if ($files != null) {
+            foreach ($files as $file)
+            {
+                $image = new Image();
+                $image->image = base64_encode(file_get_contents($file));
+                $image->event_id = $event->id;
+                $image->save();
+            }
         }
 
         return redirect()->route('events.show', $event);

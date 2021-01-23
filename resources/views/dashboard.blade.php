@@ -23,9 +23,14 @@
                 @endforeach
             </div>
         </div>
-        <div class="flex-initial hidden md:w-9/12 md:block">
+        <div class="flex-initial hidden md:w-9/12 md:block sticky top-10 self-start">
             <x-event-tab.calendar :events="$allEvents"/>
         </div>
     </div>
+
+    <a href="/events/create" class="fixed flex items-center justify-center w-12 h-12 rounded-full bg-blue-500 right-20 bottom-20 shadow">
+        <span class="text-white text-4xl">+</span>
+    </a>
+
     <script src="{{asset('js/dashboard/tabSwitch.js')}}"></script>
 </x-layouts.default>
