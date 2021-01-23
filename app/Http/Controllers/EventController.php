@@ -180,7 +180,7 @@ class EventController extends Controller
                 'price' => $event->price,
                 'email' => $email
             ));
-            return $pdf->download('ticket.pdf');
+            return $pdf->setPaper('a5', 'landscape')->download('ticket.pdf');
         }
 
         $ticket=false;

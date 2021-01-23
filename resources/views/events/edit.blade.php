@@ -1,9 +1,7 @@
 <x-layouts.default>
-    <header class="bg-white shadow">
-        <div class="max-w-7xl mx-20 py-6 px-4 sm:px-6 lg:px-8">
-            <p class="font-bold text-2xl subpixel-antialiased">Edit an event</p>
-        </div>
-    </header>
+    <div class="bg-white shadow py-6 px-4 mx-8 rounded-lg">
+        <p class="font-bold text-2xl subpixel-antialiased">Edit an event</p>
+    </div>
     <x-auth-validation-errors class="mb-4 mx-auto sm:px-6 lg:px-8 pt-4" :errors="$errors" />
     <form method="post" enctype="multipart/form-data" action="{{ route('events.update', $event) }}">
         @csrf
