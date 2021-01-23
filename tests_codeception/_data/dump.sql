@@ -89,7 +89,7 @@ DROP TABLE IF EXISTS `images`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `images` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `image` blob NOT NULL,
+  `image` mediumblob,
   `event_id` int NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -148,7 +148,7 @@ CREATE TABLE `observers` (
   KEY `observers_user_id_foreign` (`user_id`),
   CONSTRAINT `observers_event_id_foreign` FOREIGN KEY (`event_id`) REFERENCES `events` (`id`) ON DELETE CASCADE,
   CONSTRAINT `observers_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -157,7 +157,7 @@ CREATE TABLE `observers` (
 
 LOCK TABLES `observers` WRITE;
 /*!40000 ALTER TABLE `observers` DISABLE KEYS */;
-INSERT INTO `observers` VALUES (2,2,1,0);
+INSERT INTO `observers` VALUES (1,2,1,0);
 /*!40000 ALTER TABLE `observers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -201,7 +201,7 @@ CREATE TABLE `tickets` (
   KEY `tickets_user_id_foreign` (`user_id`),
   CONSTRAINT `tickets_event_id_foreign` FOREIGN KEY (`event_id`) REFERENCES `events` (`id`) ON DELETE CASCADE,
   CONSTRAINT `tickets_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -210,7 +210,6 @@ CREATE TABLE `tickets` (
 
 LOCK TABLES `tickets` WRITE;
 /*!40000 ALTER TABLE `tickets` DISABLE KEYS */;
-INSERT INTO `tickets` VALUES (1,2,1);
 /*!40000 ALTER TABLE `tickets` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -241,7 +240,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Dummy','a@a.a',NULL,'$2y$10$JV3OIpqXXfHmmrANx8l30ezOnxiC6ACMPY0j/RLlbwzQ8J7TDh28S','syu0Jio1sC3GBmoSk7mpUzyLtmvFA3c1lNu24bvLobV8vBL1FnH2Y5wGFaLE',NULL,NULL);
+INSERT INTO `users` VALUES (1,'Dummy','a@a.a',NULL,'$2y$10$L0RxguYSUOseiUGWmipzEuBGmVMs1ORUXzlme3SZE.2kA3pqRoNVm',NULL,NULL,NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -254,4 +253,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-01-22 19:12:07
+-- Dump completed on 2021-01-23 11:49:16
