@@ -65,14 +65,15 @@ $I->click('Observe');
 $I->see('Buy ticket');
 $I->see('Unobserve');
 
+$I->click('Unobserve');
+
+$I->see('Buy ticket');
+$I->see('Observe');
+$I->dontSee('Unobserve');
+
 $I->click('Buy ticket');
 
 $I->see('Download ticket');
-$I->see('Unobserve');
-
-$I->click('Unobserve');
-
-$I->see('Download ticket');
-$I->see('Observe');
+$I->dontSee('Observe');
 $I->dontSee('Unobserve');
 

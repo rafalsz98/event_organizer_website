@@ -20,41 +20,23 @@
                 <x-icons.pin class="flex block h-5 pr-2"/>{{$event->place  }}
             </div>
 
-            @if(Auth::id() !== $event->user_id)
-
-                @if( DB::table('observers')->where([
-                    'event_id'=>$event->id,
-                    'user_id'=>Auth::id()
-                    ])->exists()
-                 )
-                    <a href="{{route('events.unobserve',$event)}}">Unobserve</a>
-                    <br>
-
+            @if($isOwner)
+                @if( $bought)
+                    <a href="{{route('events.ticket',$event)}}">Download ticket</a>
                 @else
-
-                    <form action="{{route('events.observe',$event)}}" method="POST">
-                        @csrf
-                        <button>Observe</button>
-                    </form>
-
-                @endif
-
-                    @if( DB::table('tickets')->where([
-                        'event_id'=>$event->id,
-                        'user_id'=>Auth::id()
-                        ])->exists()
-                    )
-
-                        <a href="{{route('events.ticket',$event)}}">Download ticket</a>
-
+                    @if( $observed)
+                        <a href="{{route('events.unobserve',$event)}}">Unobserve</a>
+                        <br>
                     @else
-
-                        <a href="{{route('events.buy',$event)}}">Buy ticket for only {{$event->price}}</a>
-
+                        <form action="{{route('events.observe',$event)}}" method="POST">
+                            @csrf
+                            <button>Observe</button>
+                        </form>
                     @endif
 
+                    <a href="{{route('events.buy',$event)}}">Buy ticket for only {{$event->price}}</a>
+                @endif
             @else
-
                 <a href="{{route('events.edit',$event)}}">Edit</a>
 
                 <form action="{{ route('events.destroy', $event) }}" method="POST">
@@ -62,7 +44,6 @@
                     @csrf
                     <button>Delete</button>
                 </form>
-
             @endif
         </div>
 
@@ -70,7 +51,7 @@
             <x-google.map :function="1" :lat="$event->latitude" :lon="$event->longitude "/>
 
             <div class="my-4 mx-4 ">
-                {{$event->description}}
+                {!! nl2br($event->description) !!}
             </div>
         </div>
 
