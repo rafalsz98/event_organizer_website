@@ -19,16 +19,25 @@ require __DIR__.'/auth.php';
 
 
 Route::get('/dashboard','\App\Http\Controllers\EventController@dashboard')->middleware(['auth'])->name('dashboard');
-Route::resource('/events',\App\Http\Controllers\EventController::class)->only(['index', 'show', 'create', 'edit']);
-Route::post('/events/{event}/observe','\App\Http\Controllers\EventController@observe')->middleware(['auth'])->name('events.observe');
-Route::get('/events/{event}/unobserve','\App\Http\Controllers\EventController@unobserve')->middleware(['auth'])->name('events.unobserve');
-Route::get('/events/{event}/buy','\App\Http\Controllers\EventController@buy')->middleware(['auth'])->name('events.buy');
-Route::get('/events/create/','\App\Http\Controllers\EventController@create')->middleware(['auth'])->name('events.create');
-Route::post('/events','\App\Http\Controllers\EventController@store')->middleware(['auth'])->name('events.store');
-Route::get('/events/{event}/edit','\App\Http\Controllers\EventController@edit')->middleware(['auth','event.owner'])->name('events.edit');
-Route::put('/events/{event}','\App\Http\Controllers\EventController@update')->middleware(['auth','event.owner'])->name('events.update');
-Route::delete('/events/{event}','\App\Http\Controllers\EventController@destroy')->middleware(['auth','event.owner'])->name('events.destroy');
-Route::get('/events/{event}/ticket','\App\Http\Controllers\EventController@ticket')->middleware(['auth'])->name('events.ticket');
+
+Route::name('events.')->prefix('events')->middleware('auth')->group(function(){
+
+    Route::post('{event}/observe','\App\Http\Controllers\EventController@observe')->name('observe');
+    Route::get('{event}/unobserve','\App\Http\Controllers\EventController@unobserve')->name('unobserve');
+    Route::get('{event}/buy','\App\Http\Controllers\EventController@buy')->name('buy');
+    Route::get('create/','\App\Http\Controllers\EventController@create')->name('create');
+    Route::post('','\App\Http\Controllers\EventController@store')->name('store');
+    Route::get('{event}/ticket','\App\Http\Controllers\EventController@ticket')->name('ticket');
+
+    Route::middleware('event.owner')->group(function(){
+        Route::get('/{event}/edit','\App\Http\Controllers\EventController@edit')->name('edit');
+        Route::put('/{event}','\App\Http\Controllers\EventController@update')->name('update');
+        Route::delete('/{event}','\App\Http\Controllers\EventController@destroy')->name('destroy');
+    });
+});
+
+Route::resource('/events',\App\Http\Controllers\EventController::class)->only(['index', 'show']);
+
 
 Route::name('debug.')->prefix('debug')->group(function() {
     Route::get('/', function () {
