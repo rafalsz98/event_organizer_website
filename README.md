@@ -1,48 +1,37 @@
-# Event planner website
+# Event organizer website
 
 List of content
 
 - [Description](#Description)
 - [Components](#Components)
+    - [Navbar](#Navbar)
+    - [event tile](#event-tile)
+    - [google map](#google-map)
+    - [calendar](#Calendar)
+    
+- [Depricated](#Deprecated)
 
 # Description
-todo description
+
+Project for university course PHP
+
+Created in Laravel/PHP website that can be used to organize events,
+buy tickets for this events or only observe them.
+
+**Authors:**
+- [Rafał Szczepanik](https://github.com/rafalsz98)
+- [Paweł Tomczyk](https://github.com/pawelinformatyk)
+- [Krystian Turek](https://github.com/krystian886)
+- [Mateusz Sass](https://github.com/Matiisen)
+
+
+
+![dashboard](/readme_res/dashboard.png)
+
+![details](/readme_res/details.png)
 
 # Components
 Section in which there are documented components along with example usage
-## event-short-tab
-There are 2 versions of this component:
-
-<x-event-short-tab.big ... :
-
-![x-event-short-tab.big](readme_res/event-short-tab/big.png)
-
-<x-event-short-tab.small ... :
-
-![x-event-short-tab.small](readme_res/event-short-tab/small.png)
-
-### Parameters
-- event: (**mandatory**) Event model variable
-- color: (**default 0**) Used to change color palette, available palettes below
-- class: (**optional**) Any css classes
-
-### Available color palettes
-- 0
-### Adding new colors
-In file [tailwind.config.js](tailwind.config.js) in "colors" field you can add new
-palettes, according to schema:
-
-    shortTab{ID}: {
-        primary: '#RGB',
-        secondary: '#RGB'
-    },
-Then run **npm run dev**
-### Example usage
-Gives tabs captured on above screens
-```html
-<x-event-short-tab.big :event="$event" class="w-40 my-5"></x-event-short-tab.big>
-<x-event-short-tab.small :event="$event" class="w-40 my-5"></x-event-short-tab.small>
-```
 
 ## Navbar 
 Has two components
@@ -85,10 +74,10 @@ Link
     </x-navbar.link>
 ```
 
-## event-tab
+## event-tile
 <x-event-tab.side...
 
-![x-event--tab.side](readme_res/event-tab-side/side.png)
+![x-event-tab.event-tile](readme_res/event-tab-side/side.png)
 
 ### Parameter
 - event: (**mandatory**) Event model variable
@@ -106,7 +95,7 @@ This element also has an href which directs to the given event detailed view.
 
 ### Example usage
 ```html
-<x-event-tab.side :event="$event" :ticketBought="1" />
+<x-event-tab.event-tile :event="$event" :ticketBought="1" />
 ```
 
 ## google-map
@@ -146,4 +135,52 @@ Gallery works like carousel, on click shows next photo.
 ### Example usage
 ```html
 <x-gallery :event="$event"/>
+```
+
+## Calendar
+<x-event-tab.calendar ...
+
+### Parameters
+- events: (**mandatory**) Array of all events to display
+
+### Example usage
+```html
+<x-event-tab.calendar :events="$allEvents"/>
+```
+
+# Deprecated
+**Do not use**
+
+## event-short-tab
+There are 2 versions of this component:
+
+<x-event-short-tab.big ... :
+
+![x-event-tab.calendar-tile-big](readme_res/event-short-tab/big.png)
+
+<x-event-short-tab.small ... :
+
+![x-event-tab.calendar-tile-small](readme_res/event-short-tab/small.png)
+
+### Parameters
+- event: (**mandatory**) Event model variable
+- color: (**default 0**) Used to change color palette, available palettes below
+- class: (**optional**) Any css classes
+
+### Available color palettes
+- 0
+### Adding new colors
+In file [tailwind.config.js](tailwind.config.js) in "colors" field you can add new
+palettes, according to schema:
+
+    shortTab{ID}: {
+        primary: '#RGB',
+        secondary: '#RGB'
+    },
+Then run **npm run dev**
+### Example usage
+Gives tabs captured on above screens
+```html
+<x-event-tab.calendar-tile-big :event="$event" class="w-40 my-5" />
+<x-event-tab.calendar-tile-small :event="$event" class="w-40 my-5" />
 ```

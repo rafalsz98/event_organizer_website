@@ -73,10 +73,6 @@
                                                 class="px-2 py-1 rounded-lg mt-1 overflow-hidden border"
                                                 :class="{
 												'border-blue-200 text-blue-800 bg-blue-100': 0 === 0,
-{{--												'border-red-200 text-red-800 bg-red-100': event.event_theme === 1,--}}
-{{--												'border-yellow-200 text-yellow-800 bg-yellow-100': event.event_theme === 2,--}}
-{{--												'border-green-200 text-green-800 bg-green-100': event.event_theme === 3,--}}
-{{--												'border-purple-200 text-purple-800 bg-purple-100': event.event_theme === 4--}}
 											}">
                                                 <p x-text="event['name']" class="text-sm truncate leading-tight cursor-pointer" x-on:click="redirectToDetails(event['id'])"></p>
                                             </div>
@@ -100,31 +96,6 @@
                     blankdays: [],
                     days: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
                     events: @json($events),
-
-                    themes: [
-                        {
-                            value: 0,
-                            label: "Blue Theme"
-                        },
-                        {
-                            value: 1,
-                            label: "Red Theme"
-                        },
-                        {
-                            value: 2,
-                            label: "Yellow Theme"
-                        },
-                        {
-                            value: 3,
-                            label: "Green Theme"
-                        },
-                        {
-                            value: 4,
-                            label: "Purple Theme"
-                        }
-                    ],
-
-                    openEventModal: false,
 
                     initDate() {
                         let today = new Date();

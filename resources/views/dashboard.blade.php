@@ -10,6 +10,10 @@
                 </p>
             </div>
             <div id="observedEvents" class="grid grid-cols-1 gap-4 py-4 transition-all duration-500 opacity-100">
+                @if (count($boughtEvents) == 0 && count($observedEvents) == 0)
+                    <p class="italic">No events! <a href="/"><strong>Go observe</strong></a> some cool events and come back</p>
+                    <img src="{{asset('images/no-events.png')}}" alt="No events" class="rounded-lg shadow">
+                @endif
                 @foreach ($boughtEvents as $event)
                     <x-event-tab.event-tile :event="$event" ticketBought="1"/>
                 @endforeach
@@ -18,9 +22,12 @@
                 @endforeach
             </div>
             <div id="createdEvents" class="grid grid-cols-1 gap-4 py-4 transition-all duration-500 hidden opacity-0">
-                @foreach ($createdEvents as $event)
+                @forelse ($createdEvents as $event)
                     <x-event-tab.event-tile :event="$event" :ticketBought="0"/>
-                @endforeach
+                @empty
+                    <p class="italic">You haven't created any event! <a href="/events/create"><strong>Go create</strong></a> some cool event and come back</p>
+                    <img src="{{asset('images/no-events.png')}}" alt="No events" class="rounded-lg shadow">
+                @endforelse
             </div>
         </div>
         <div class="flex-initial hidden md:w-9/12 md:block sticky top-10 self-start">
@@ -29,7 +36,7 @@
     </div>
 
     <a href="/events/create" class="fixed flex items-center justify-center w-12 h-12 rounded-full bg-blue-500 right-20 bottom-20 shadow">
-        <span class="text-white text-4xl">+</span>
+        <span class="text-white text-4xl pb-1">+</span>
     </a>
 
     <script src="{{asset('js/dashboard/tabSwitch.js')}}"></script>
