@@ -20,7 +20,7 @@
 <div class="min-h-screen bg-gray-100">
 
     <x-navbar.bar destinations="events.index dashboard" names="Events Dashboard" icons="dashboard calendar">
-        {{ __('Calendar') }}
+        {{ __('SeeU') }}
     </x-navbar.bar>
 
     <main>
