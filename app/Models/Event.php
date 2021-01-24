@@ -32,6 +32,6 @@ class Event extends Model
 
     // pivot table observers
     public function observers() {
-        return $this->belongsToMany(User::class)->as('observers')->withPivot('color');
+        return $this->belongsToMany(User::class)->as('observers');
     }
 }

@@ -45,7 +45,6 @@ class EventSeeder extends Seeder
         DB::table('observers')->insert([
             'event_id' => 2,
             'user_id' => 1,
-            'color' => 0
         ]);
     }
 }

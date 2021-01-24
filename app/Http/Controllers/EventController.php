@@ -96,11 +96,6 @@ class EventController extends Controller
 
     public function observe(Request $request,Event $event)
     {
-        $color=0;
-        if ($request->has('color')) {
-            $color=$request->color;
-        }
-
         $user_id=Auth::id();
 
         if(!DB::table('observers')->where(['event_id'=>$event->id,'user_id'=>$user_id])->exists()
@@ -145,10 +140,8 @@ class EventController extends Controller
         $created_events=Auth::user()->events()->get();
 
 
-        // hotfix until change of db
         $allEvents = Event::all();
         $observed_events = $observed_events->diff($bought_events)->all();
-
 
 
         return view('dashboard')
