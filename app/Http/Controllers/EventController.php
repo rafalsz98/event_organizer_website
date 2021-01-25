@@ -40,7 +40,7 @@ class EventController extends Controller
         $event->datestart = $request->datestart_date.' '.$request->datestart_time;
         $event->duration = $request->duration;
         $event->name = $request->name;
-        $event->description = $request->description;
+        $event->description = htmlspecialchars($request->description);
         $event->place = $request->place;
         $event->latitude = $request->latitude;
         $event->longitude = $request->longitude;
@@ -78,7 +78,7 @@ class EventController extends Controller
         $event->datestart = $request->datestart_date.' '.$request->datestart_time;
         $event->duration = $request->duration;
         $event->name = $request->name;
-        $event->description = $request->description;
+        $event->description = htmlspecialchars($request->description);
         $event->place = $request->place;
         $event->latitude = $request->latitude;
         $event->longitude = $request->longitude;
