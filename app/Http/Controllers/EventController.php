@@ -179,10 +179,10 @@ class EventController extends Controller
 
         if(DB::table('tickets')->where(['event_id'=>$event->id,'user_id'=>$user_id])->exists())
         {
-            $pdf= PDF::loadView('ticket/ticketPDF', array(
+            $pdf= \PDF::loadView('ticket/ticketPDF', array(
                 'name' => $event->name,
                 'datestart' => $event->datestart,
-                'duration' => $event->duration,
+                'duration' => $event->duration->format('H:i'),
                 'place' => $event->place,
                 'price' => $event->price,
                 'email' => $email

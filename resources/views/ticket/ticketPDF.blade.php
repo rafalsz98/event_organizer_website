@@ -9,13 +9,18 @@
             background-color: #f2f2f2;
         }
         h2 {
-            padding: 10px 10px 10px 10px;
+            padding-left: 70px;
+        }
+        p {
+            font-size: 13px;
+        }
+        body {
+            border: 3px outset darkgreen;
         }
     </style>
 </head>
 <body>
     <h2>{{$name}}</h2>
-    <br>
     <table style="width: 600px">
         <tr>
             <th>
@@ -24,11 +29,15 @@
                 </div>
             </th>
             <th>
+                <p style="text-decoration: underline">when:</p>
                 <p>{{$datestart}}</p>
+                <p style="text-decoration: underline">how long:</p>
                 <p>{{$duration}}</p>
+                <p style="text-decoration: underline">where:</p>
                 <p>{{$place}}</p>
-                <p>{{$price}}</p><br>
-                <p style="text-decoration: underline">Your email:  {{$email}}</p>
+                <p style="text-decoration: underline">how much: {{$price}}</p><br>
+                <p style="text-decoration: underline">Your email:</p>
+                <p>{{$email}}</p>
             </th>
         </tr>
     </table>
