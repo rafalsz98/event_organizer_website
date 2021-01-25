@@ -104,7 +104,7 @@ class EventController extends Controller
         if(!DB::table('observers')->where(['event_id'=>$event->id,'user_id'=>$user_id])->exists()
             && $event->user_id != $user_id)
         {
-            DB::table('observers')->insert(['event_id'=>$event->id,'user_id'=>$user_id,'color'=>$color]);
+            DB::table('observers')->insert(['event_id'=>$event->id,'user_id'=>$user_id]);
         }
 
         return redirect()->back();
@@ -122,6 +122,8 @@ class EventController extends Controller
 
     public function dashboard()
     {
+        $currentDate = date('Y-m-d H:i');
+
         //find observed,bought,created by user events and return them
         $user_id=Auth::id();
 
@@ -131,27 +133,41 @@ class EventController extends Controller
         foreach ($observed_events_ids_objects as $observed_events_ids_object)
             $observed_events[]=$observed_events_ids_object->event_id;
         $observed_events=Event::all()->find($observed_events);
-
         //bought events
         $bought_events_ids_objects=DB::table('tickets')->select('event_id')->where(['user_id'=>$user_id])->get();
         $bought_events=[];
         foreach ($bought_events_ids_objects as $bought_events_ids_object)
             $bought_events[]=$bought_events_ids_object->event_id;
         $bought_events=Event::all()->find($bought_events);
-
         //created events
         $created_events=Auth::user()->events()->get();
+        //$allEvents = $created_events->union($observed_events);
 
 
+        $outdated_observed_events = $observed_events->where('datestart', '<', $currentDate);
+        $outdated_bought_events = $bought_events->where('datestart', '<', $currentDate);
+        $observed_events = $observed_events->diff($outdated_observed_events);
+        $bought_events = $bought_events->diff($outdated_bought_events)->sortBy('datestart');
+
+        $outdated_observed_events = $outdated_observed_events->union($outdated_bought_events);
+
+        $outdated_created_events = $created_events->where('datestart', '<', $currentDate);
+        $created_events = $created_events->diff($outdated_created_events)->sortBy('datestart');
+
+        $observed_events = $observed_events->diff($bought_events)->sortBy('datestart');
+
+
+        //$allEvents = $created_events->union($observed_events)->union($outdated_observed_events)->union($outdated_created_events)->all();
+        //var_dump($allEvents->all());
         $allEvents = Event::all();
-        $observed_events = $observed_events->diff($bought_events)->all();
-
 
         return view('dashboard')
             ->withAllEvents($allEvents)
             ->withObservedEvents($observed_events)
             ->withCreatedEvents($created_events)
-            ->withBoughtEvents($bought_events);
+            ->withBoughtEvents($bought_events)
+            ->withOutdatedObservedEvents($outdated_observed_events)
+            ->withOutdatedCreatedEvents($outdated_created_events);
     }
 
     public function buy(Event $event)

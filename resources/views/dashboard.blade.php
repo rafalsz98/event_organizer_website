@@ -10,24 +10,31 @@
                 </p>
             </div>
             <div id="observedEvents" class="grid grid-cols-1 gap-4 py-4 transition-all duration-500 opacity-100">
-                @if (count($boughtEvents) == 0 && count($observedEvents) == 0)
+                @if (count($boughtEvents) == 0 && count($observedEvents) == 0 && count($outdatedObservedEvents) == 0)
                     <p class="italic">No events! <a href="/"><strong>Go observe</strong></a> some cool events and come back</p>
                     <img src="{{asset('images/no-events.png')}}" alt="No events" class="rounded-lg shadow">
                 @endif
                 @foreach ($boughtEvents as $event)
-                    <x-event-tab.event-tile :event="$event" ticketBought="1"/>
+                    <x-event-tab.event-tile :event="$event" ticketBought="1" switch="0"/>
                 @endforeach
                 @foreach($observedEvents as $event)
-                    <x-event-tab.event-tile :event="$event" ticketBought="0"/>
+                    <x-event-tab.event-tile :event="$event" ticketBought="0" switch="0"/>
+                @endforeach
+                @foreach ($outdatedObservedEvents as $event)
+                    <x-event-tab.event-tile :event="$event" ticketBought="0" switch="1"/>
                 @endforeach
             </div>
             <div id="createdEvents" class="grid grid-cols-1 gap-4 py-4 transition-all duration-500 hidden opacity-0">
-                @forelse ($createdEvents as $event)
-                    <x-event-tab.event-tile :event="$event" :ticketBought="0"/>
-                @empty
+                @if (count($createdEvents) == 0 && count($outdatedCreatedEvents) == 0)
                     <p class="italic">You haven't created any event! <a href="/events/create"><strong>Go create</strong></a> some cool event and come back</p>
                     <img src="{{asset('images/no-events.png')}}" alt="No events" class="rounded-lg shadow">
-                @endforelse
+                @endif
+                @foreach ($createdEvents as $event)
+                    <x-event-tab.event-tile :event="$event" :ticketBought="0" switch="0"/>
+                @endforeach
+                @foreach ($outdatedCreatedEvents as $event)
+                    <x-event-tab.event-tile :event="$event" :ticketBought="0" switch="1"/>
+                @endforeach
             </div>
         </div>
         <div class="flex-initial hidden md:w-9/12 md:block sticky top-10 self-start">
