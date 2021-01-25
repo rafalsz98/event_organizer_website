@@ -40,7 +40,7 @@ class EventController extends Controller
         $event->datestart = $request->datestart_date.' '.$request->datestart_time;
         $event->duration = $request->duration;
         $event->name = $request->name;
-        $event->description = $request->description;
+        $event->description = htmlspecialchars($request->description);
         $event->place = $request->place;
         $event->latitude = $request->latitude;
         $event->longitude = $request->longitude;
@@ -78,7 +78,7 @@ class EventController extends Controller
         $event->datestart = $request->datestart_date.' '.$request->datestart_time;
         $event->duration = $request->duration;
         $event->name = $request->name;
-        $event->description = $request->description;
+        $event->description = htmlspecialchars($request->description);
         $event->place = $request->place;
         $event->latitude = $request->latitude;
         $event->longitude = $request->longitude;
@@ -179,10 +179,10 @@ class EventController extends Controller
 
         if(DB::table('tickets')->where(['event_id'=>$event->id,'user_id'=>$user_id])->exists())
         {
-            $pdf= PDF::loadView('ticket/ticketPDF', array(
+            $pdf= \PDF::loadView('ticket/ticketPDF', array(
                 'name' => $event->name,
                 'datestart' => $event->datestart,
-                'duration' => $event->duration,
+                'duration' => $event->duration->format('H:i'),
                 'place' => $event->place,
                 'price' => $event->price,
                 'email' => $email
