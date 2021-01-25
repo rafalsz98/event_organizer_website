@@ -85,6 +85,9 @@ Link
 	This ticket img lets us download previously bought ticket PDF to our device.
 	Values: 0 - ticket not bought
 			1 - ticket bought
+- switch: (**optional**) if an event already took place - changes the look of the tile.
+	Values: 0 - event has not taken place yet
+			1 - event has already passed
 
 
 This element is to be found next to the calendar component and its purpose is to give user more detailed info about given event.
@@ -95,7 +98,7 @@ This element also has an href which directs to the given event detailed view.
 
 ### Example usage
 ```html
-<x-event-tab.event-tile :event="$event" :ticketBought="1" />
+<x-event-tab.event-tile :event="$event" :ticketBought="1" :switch="1" />
 ```
 
 ## google-map
@@ -120,7 +123,7 @@ To make it work just populate GOOGLE_API_KEY field in your .env file with your o
 
 ### Example usage
 ```html
-<x-google.map :function="1" :lat="50.05" lon="30"/>
+<x-google.map :function="1" :lat="50.05" :lon="30"/>
 ```
 
 ## gallery

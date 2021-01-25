@@ -196,7 +196,7 @@ class EventController extends Controller
 
     private function ValidateEvent(Request $request)
     {
-        $todayDate = date('Y-m-d H:i',time() + 60*60);
+        $todayDate = date('m-d-Y H:i',time() + 60*60);
 
         return $request->validate([
             'datestart_date' => 'required|date_format:Y-m-d|after_or_equal:'.$todayDate,
