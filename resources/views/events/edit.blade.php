@@ -70,7 +70,7 @@
                 <br><br><br>
                 <div class="flex items-center justify-end mt-4  mx-auto sm:px-6 lg:px-8">
                     <x-button class="ml-4">
-                        {{ __('Update') }}
+                        {{ __('UPDATE') }}
                     </x-button>
                 </div>
             </div>
