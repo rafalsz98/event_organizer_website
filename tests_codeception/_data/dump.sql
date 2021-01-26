@@ -89,10 +89,12 @@ DROP TABLE IF EXISTS `images`;
 CREATE TABLE `images` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
   `image` mediumblob,
-  `event_id` int NOT NULL,
+  `event_id` int unsigned NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `images_event_id_foreign` (`event_id`),
+  CONSTRAINT `images_event_id_foreign` FOREIGN KEY (`event_id`) REFERENCES `events` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -250,4 +252,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-01-24 19:42:07
+-- Dump completed on 2021-01-26 21:21:15

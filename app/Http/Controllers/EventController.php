@@ -20,10 +20,10 @@ class EventController extends Controller
 
     public function show(Event $event)
     {
-        $bought= DB::table('tickets')->where(['event_id'=>$event->id,'user_id'=>Auth::id()])->exists();
+        $ticket= DB::table('tickets')->where(['event_id'=>$event->id,'user_id'=>Auth::id()])->exists();
         $observed= DB::table('observers')->where(['event_id'=>$event->id,'user_id'=>Auth::id()])->exists();
         $is_owner=Auth::id() !== $event->user_id;
-        return view('events.show')->withEvent($event)->withBought($bought)->withObserved($observed)->withIsOwner($is_owner);
+        return view('events.show')->withEvent($event)->withTicket($ticket)->withObserved($observed)->withIsOwner($is_owner);
     }
 
     public function create()
