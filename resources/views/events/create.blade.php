@@ -72,7 +72,7 @@
                 <p class="font-bold text-red-600 mx-auto sm:px-6 lg:px-8">Warning! Images cannot be updated later</p>
                 <div class="flex items-center justify-end mt-4  mx-auto sm:px-6 lg:px-8">
                     <x-button class="ml-4">
-                        {{ __('Create') }}
+                        {{ __('CREATE') }}
                     </x-button>
                 </div>
             </div>
