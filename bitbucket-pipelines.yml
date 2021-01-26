@@ -17,6 +17,7 @@ pipelines:
           -   while ! timeout 1 bash -c "echo > /dev/tcp/localhost/8000"; do echo "Waiting for server..."; sleep 1; done
           -   vendor/bin/codecept run --xml test_report.xml
           -   killall php php7.4
+          -   .ci/collect_reports.sh
 definitions:
   services:
     mysql:
