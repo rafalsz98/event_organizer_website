@@ -17,8 +17,10 @@ class CreateImagesTable extends Migration
         Schema::create('images', function (Blueprint $table) {
             $table->increments('id');
             $table->binary('image');
-            $table->integer('event_id');
+            $table->unsignedInteger('event_id');
             $table->timestamps();
+
+            $table->foreign('event_id')->references('id')->on('events')->onDelete('cascade');
         });
 
         DB::statement("ALTER TABLE images MODIFY COLUMN image MEDIUMBLOB");

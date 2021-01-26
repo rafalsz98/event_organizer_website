@@ -21,7 +21,7 @@
             </div>
 
             @if($isOwner)
-                @if( $bought)
+                @if( $ticket)
                     <a href="{{route('events.ticket',$event)}}">Download ticket</a>
                 @else
                     @if( $observed)
@@ -34,7 +34,12 @@
                         </form>
                     @endif
 
-                    <a href="{{route('events.buy',$event)}}">Buy ticket for only {{$event->price}}</a>
+                    @if(  $event->current_participants<$event->max_participants   )
+                        <a href="{{route('events.buy',$event)}}">Buy ticket for only {{$event->price}}</a>
+                    @else
+                        <a>Sold out!</a>
+                    @endif
+
                 @endif
             @else
                 <a href="{{route('events.edit',$event)}}">Edit</a>
