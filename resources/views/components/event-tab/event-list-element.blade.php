@@ -8,9 +8,9 @@
 
 <section class="flex flex-row flex-wrap font-mono">
 
-    <div style="width: 100%; margin:0 auto; margin-bottom: 25px;"  class="transition-all duration-150 flex bg-gray-50 bg-white rounded-lg shadow">
+    <div style=" margin:0 auto; margin-bottom: 25px;"  class="w-full md:w-4/5 transition-all duration-150 flex bg-gray-50 bg-white rounded-lg shadow">
 
-        <div style="width:300px; height:300px; display: flex; align-items: center; ">
+        <div style=" display: flex; align-items: center; " class="w-0  md:w-80">
             <a href=/events/{{$event->id}}"><x-gallery :event="$event" />
         </div>
 
@@ -45,7 +45,7 @@
                 </div>
 
             </div>
-            <div class="text-align: right; px-4 py-1 overflow-auto text-sm  text-gray-700">
+            <div style = "text-align: right;" class=" px-4 py-1 overflow-auto text-sm  text-gray-700">
             @if( $bought)
             <a href="{{route('events.ticket',$event)}}">Download ticket</a>
         @else
