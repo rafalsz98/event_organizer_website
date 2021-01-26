@@ -30,7 +30,7 @@
                     @else
                         <form action="{{route('events.observe',$event)}}" method="POST">
                             @csrf
-                            <button>Observe</button>
+                            <button>Observe event</button>
                         </form>
                     @endif
 
