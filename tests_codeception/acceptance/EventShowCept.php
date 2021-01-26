@@ -1,6 +1,6 @@
 <?php
 $I = new AcceptanceTester($scenario);
-$I->wantTo('Test show page');
+$I->wantTo('Test show page and methods from event controller');
 
 $I->amOnPage('/login');
 $I->seeCurrentUrlEquals('/login');
@@ -47,6 +47,13 @@ $I->see('Delete');
 $I->click('Edit');
 $I->seeCurrentUrlEquals('/events/'.$id.'/edit');
 
+$I->amOnPage('/events/'.$id);
+$I->seeCurrentUrlEquals('/events/'.$id);
+
+$I->seeInDatabase('events', ['id' => $id]);
+$I->click('Delete');
+$I->dontSeeInDatabase('events', ['id' => $id]);
+
 $I->amOnPage('/events/'.$id2);
 $I->seeCurrentUrlEquals('/events/'.$id2);
 
@@ -60,20 +67,25 @@ $I->see('Buy ticket');
 $I->see('Observe');
 $I->dontSee('Unobserve');
 
+$I->dontSeeInDatabase('observers', ['event_id' => $id2,'user_id'=>1]);
 $I->click('Observe');
+$I->seeInDatabase('observers', ['event_id' => $id2,'user_id'=>1]);
 
 $I->see('Buy ticket');
 $I->see('Unobserve');
 
+$I->seeInDatabase('observers', ['event_id' => $id2,'user_id'=>1]);
 $I->click('Unobserve');
+$I->dontSeeInDatabase('observers', ['event_id' => $id2,'user_id'=>1]);
 
 $I->see('Buy ticket');
 $I->see('Observe');
 $I->dontSee('Unobserve');
 
+$I->dontSeeInDatabase('tickets', ['event_id' => $id2,'user_id'=>1]);
 $I->click('Buy ticket');
+$I->seeInDatabase('tickets', ['event_id' => $id2,'user_id'=>1]);
 
 $I->see('Download ticket');
 $I->dontSee('Observe');
 $I->dontSee('Unobserve');
-
