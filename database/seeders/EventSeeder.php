@@ -16,7 +16,7 @@ class EventSeeder extends Seeder
     {
         $dates = [
             '2021-01-30 18:00',
-            '2021-01-30 18:00',
+            '2021-01-30 20:00',
             '2021-01-29 18:00',
             '2021-01-02 18:00',
             '2021-01-04 18:00',
@@ -55,7 +55,6 @@ class EventSeeder extends Seeder
 
         $dates = [
             '2021-01-15 18:00',
-            '2021-01-30 18:00',
 
         ];
         foreach ($dates as $date) {
@@ -80,14 +79,19 @@ class EventSeeder extends Seeder
             $i++;
         }
 
-
-        DB::table('observers')->insert([
-            'event_id' => 2,
-            'user_id' => 1,
-        ]);
-        DB::table('observers')->insert([
-            'event_id' => 4,
-            'user_id' => 1,
+        // add event with full participants
+        DB::table('events')->insert([
+            'datestart' => '2021-01-27 15:00',
+            'duration' => '1:30',
+            'name' => 'What a cool event',
+            'description' => ' Lorem ipsum dolor sit nec tellus ornare, a consequat nulla dignissim. Donec faucibus nec tortor vel sagittis. Etiam vel ex pharetra, commodo metus quis, gravida eros. Morbi velit nulla, finibus in magna malesuada, convallis feugiat lorem. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nulla maximus tincidunt mauris, a sodales erat. Aliquam ut lacus eget risus lobortis ultricies. Phasellus ut quam tellus. Nunc quam justo, pulvinar vitae rutrum sed, varius sed risus. In rhoncus, massa sit amet pellentesque consectetur, dolor sapien porttitor nu pellentesque a. ',
+            'place' => 'Alabama',
+            'latitude' => 6.1,
+            'longitude' => 6.1,
+            'max_participants' => 50,
+            'current_participants' => 50,
+            'price' => 100,
+            'user_id' => 10
         ]);
     }
 }

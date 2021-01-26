@@ -14,8 +14,14 @@ class EventController extends Controller
     public function index()
     {
         $events=Event::all();
+        $outdated_events = $events->where('datestart', '<', date('Y-m-d H:i'));
+        $events = $events->diff($outdated_events)->sortBy('datestart');
 
-        return view('events')->withEvents($events);
+        $outdated_events = $outdated_events->sortByDesc('datestart');
+
+        return view('events')
+            ->withEvents($events)
+            ->withOutdatedEvents($outdated_events);
     }
 
     public function show(Event $event)
@@ -141,25 +147,20 @@ class EventController extends Controller
         $bought_events=Event::all()->find($bought_events);
         //created events
         $created_events=Auth::user()->events()->get();
-        //$allEvents = $created_events->union($observed_events);
 
+        $allEvents = $created_events->merge($observed_events)->merge($bought_events);
 
         $outdated_observed_events = $observed_events->where('datestart', '<', $currentDate);
         $outdated_bought_events = $bought_events->where('datestart', '<', $currentDate);
         $observed_events = $observed_events->diff($outdated_observed_events);
         $bought_events = $bought_events->diff($outdated_bought_events)->sortBy('datestart');
 
-        $outdated_observed_events = $outdated_observed_events->union($outdated_bought_events);
+        $outdated_observed_events = $outdated_observed_events->union($outdated_bought_events)->sortByDesc('datestart');
 
         $outdated_created_events = $created_events->where('datestart', '<', $currentDate);
         $created_events = $created_events->diff($outdated_created_events)->sortBy('datestart');
 
         $observed_events = $observed_events->diff($bought_events)->sortBy('datestart');
-
-
-        //$allEvents = $created_events->union($observed_events)->union($outdated_observed_events)->union($outdated_created_events)->all();
-        //var_dump($allEvents->all());
-        $allEvents = Event::all();
 
         return view('dashboard')
             ->withAllEvents($allEvents)
