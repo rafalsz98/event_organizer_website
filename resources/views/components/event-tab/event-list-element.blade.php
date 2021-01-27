@@ -12,12 +12,12 @@
 
 <div class="w-full lg:w-4/6 h-96 transition-all duration-150 flex bg-gray-50 bg-white rounded-lg shadow mb-8 relative pr-0 lg:pr-32 {{$opacity}}">
 
-    <a href=/events/{{$event->id}}" class="flex justify-center items-center overflow-hidden w-0 sm:w-full bg-cover bg-center rounded-l-xl" style="background-image: url('{{$url}}');"></a>
+    <a href="/events/{{$event->id}}" class="flex justify-center items-center overflow-hidden w-0 sm:w-full bg-cover bg-center rounded-l-xl" style="background-image: url('{{$url}}');"></a>
 
     <div class=" w-full items-stretch min-h-full pb-2 mb-1 transition-all duration-150 ">
         <div class="items-center flex-1 px-4 mx-auto my-2">
             <p class="self-end text-xl font-bold tracking-normal text-gray-800">
-                <a href=/events/{{$event->id}}">{{$event->name}}</a>
+                <a href="/events/{{$event->id}}">{{$event->name}}</a>
                 @if ($active == 0)
                     <p class="text-red-700 inline float-left">THIS EVENT HAS ALREADY PASSED</p>
                 @endif
